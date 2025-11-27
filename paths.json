@@ -1,10 +1,10 @@
 {
   "mappings": [
-    "/content/aem-boilerplate/:/",
-    "/content/aem-boilerplate/configuration:/.helix/config.json",
-    "/content/aem-boilerplate/metadata:/metadata.json"
+    "/content/family-like-friends-eds-test/:/",
+    "/content/family-like-friends-eds-test/configuration:/.helix/config.json",
+    "/content/family-like-friends-eds-test/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/aem-boilerplate/"
+    "/content/family-like-friends-eds-test/"
   ]
 }
