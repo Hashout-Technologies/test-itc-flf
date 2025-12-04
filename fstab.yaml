@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p93861-e854826.adobeaemcloud.com/bin/franklin.delivery/Hashout-Technologies/test-itc-flf/main"
+    url: "https://author-p127163-e1239520.adobeaemcloud.com/bin/franklin.delivery/Hashout-Technologies/test-itc-flf/main"
     type: "markup"
     suffix: ".html"
