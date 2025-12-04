@@ -143,6 +143,38 @@
           }
         },
         {
+          "title": "Game Carousel Card",
+          "id": "game-carousel-card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Game Carousel Card",
+                  "model": "game-carousel-card",
+                  "filter": "game-carousel-card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Game Cards Item",
+          "id": "game-cards-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Game Cards Item",
+                  "model": "game-cards-item",
+                  "filter": "game-cards-item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Hero",
           "id": "hero",
           "plugins": {
