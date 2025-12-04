@@ -224,6 +224,11 @@
         "value": ""
       },
       {
+        "component": "aem-content",
+        "name": "link",
+        "label": "CTA Link"
+      },
+      {
         "component": "text",
         "valueType": "string",
         "name": "cta-text",
