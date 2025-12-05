@@ -19,5 +19,8 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'import/prefer-default-export': 'off', // disables requiring default exports
+    'xwalk/max-cells': ['error', {
+      'game-cards-item': 5,
+    }],
   },
 };
