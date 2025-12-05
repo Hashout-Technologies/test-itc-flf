@@ -39,8 +39,10 @@ export default function decorate(block) {
     buttonDiv.classList.add('carousel-card-cta');
 
     const link = buttonDiv.querySelector('a');
-    link.classList.remove('button');
-    link.classList.add('cta-link');
+    if (link) {
+      link.classList.remove('button');
+      link.classList.add('cta-link');
+    }
     const paragraph = buttonDiv.querySelector('p');
     if (paragraph && link) {
       paragraph.replaceWith(link);
@@ -58,8 +60,8 @@ export default function decorate(block) {
     carouselWrapper.append(div);
   });
 
-  block.innerHTML = '';
-  block.append(titleDiv, carouselWrapper);
+  // block.innerHTML = '';
+  block.append(carouselWrapper);
 
   const indicatorContainer = CreateElem('div', 'indicator-container');
   const slides = carouselWrapper.querySelectorAll('.carousel-slide');
