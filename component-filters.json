@@ -45,5 +45,11 @@
     "components": [
       "game-cards-item"
     ]
+  },
+  {
+    "id": "icons-link",
+    "components": [
+      "icons-link-item"
+    ]
   }
 ]

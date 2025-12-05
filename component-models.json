@@ -262,5 +262,41 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "icons-link",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "icons-link-item",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Icon Link"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon-image",
+        "label": "Icon Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "alt-text",
+        "value": "",
+        "label": "Icon Alt Text",
+        "valueType": "string"
+      }
+    ]
   }
 ]

@@ -1,0 +1,27 @@
+.icons-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.icons-link-title p{
+  color: var(--color-neutral-100);
+  font-weight: var(--font-weight-regular);
+  font-size: 0.75rem;
+  line-height: 120%;
+  margin: 0;
+}
+
+.icons-link-list{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.icons-link img {
+  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
