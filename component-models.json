@@ -204,7 +204,7 @@
     "id": "game-cards-item",
     "fields": [
       {
-        "component": "text",
+        "component": "richtext",
         "name": "card-title",
         "label": "Card Title",
         "valueType": "string"
