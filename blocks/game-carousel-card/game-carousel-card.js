@@ -60,7 +60,6 @@ export default function decorate(block) {
     carouselWrapper.append(div);
   });
 
-  // block.innerHTML = '';
   block.append(carouselWrapper);
 
   const indicatorContainer = CreateElem('div', 'indicator-container');
