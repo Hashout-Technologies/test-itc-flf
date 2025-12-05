@@ -49,7 +49,6 @@
     position: relative;
     height: 24.8125rem;
     list-style-type: none;
-    box-shadow: var(--primary-boxshadow);
     border-radius: 1.75rem;
     background: var(--color-dark-red);
     padding: 1.0625rem 0 0.6875rem;
