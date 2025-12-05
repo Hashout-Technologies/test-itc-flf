@@ -214,5 +214,23 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "menu-list-item",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "heading",
+        "value": "",
+        "label": "Link Details",
+        "valueType": "string"
+      }
+    ]
   }
 ]
