@@ -51,7 +51,8 @@
         "cards",
         "columns",
         "fragment",
-        "game-carousel-card"
+        "game-carousel-card",
+        "icons-link"
       ]
     }
   ]
