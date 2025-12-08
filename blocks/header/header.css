@@ -135,6 +135,7 @@ header .nav-sidebar .nav-sections {
   display: block;
   visibility: visible;
   padding: 0 1.5rem;
+  padding-bottom: 3.125rem;
 }
 
 header .nav-sidebar .nav-sections ul {
