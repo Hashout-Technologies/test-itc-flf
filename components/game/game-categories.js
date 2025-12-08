@@ -3,7 +3,7 @@
  * Handles category data, questions, and clues
  */
 /* eslint-disable */
-import { GAME_TYPES, CATEGORIES } from './game-config.js';
+import { GAME_TYPES } from './game-config.js';
 
 export class GameCategoryManager {
   constructor(gameEngine) {
