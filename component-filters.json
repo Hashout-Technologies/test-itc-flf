@@ -17,7 +17,8 @@
       "columns",
       "fragment",
       "game-carousel-card",
-      "icons-link"
+      "icons-link",
+      "menu-list-box"
     ]
   },
   {
@@ -51,6 +52,12 @@
     "id": "icons-link",
     "components": [
       "icons-link-item"
+    ]
+  },
+  {
+    "id": "menu-list-box",
+    "components": [
+      "menu-list-item"
     ]
   }
 ]
