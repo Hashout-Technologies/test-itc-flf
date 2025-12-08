@@ -49,7 +49,6 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
 
-  // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
@@ -117,7 +116,6 @@ export default async function decorate(block) {
     }
   }
 
-  // hamburger at start
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
   const hamburgerButton = document.createElement('button');
@@ -126,18 +124,15 @@ export default async function decorate(block) {
   hamburgerButton.setAttribute('aria-label', 'Open navigation');
   hamburgerButton.setAttribute('aria-expanded', 'false');
 
-  // Create icon container
   const iconContainer = document.createElement('span');
   iconContainer.classList.add('nav-hamburger-icon');
 
-  // Create hamburger icon
   const hamburgerIcon = document.createElement('img');
   const codeBasePath = window.hlx?.codeBasePath || '';
   hamburgerIcon.src = `${codeBasePath}/icons/align-left.png`;
   hamburgerIcon.alt = 'Menu';
   hamburgerIcon.classList.add('nav-icon-hamburger');
 
-  // Create close icon
   const closeIcon = document.createElement('img');
   closeIcon.src = `${codeBasePath}/icons/close.svg`;
   closeIcon.alt = 'Close';
@@ -149,17 +144,13 @@ export default async function decorate(block) {
   hamburgerButton.addEventListener('click', toggleSidebar);
   hamburger.append(hamburgerButton);
 
-  // Create sidebar for navigation sections
   const sidebar = document.createElement('div');
   sidebar.classList.add('nav-sidebar');
   sidebar.id = 'nav-sidebar';
 
-
   if (navSections) {
-    // Move nav sections to sidebar
     sidebar.append(navSections);
 
-    // Handle dropdowns in sidebar
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) {
         navSection.classList.add('nav-drop');
@@ -170,18 +161,14 @@ export default async function decorate(block) {
       }
     });
 
-    // Select the wrapper divs in the menu list
     const menuItems = navSections.querySelectorAll('.menu-list-box > div');
     menuItems.forEach((item) => {
-      // Find the image and the text link within this item
       const picture = item.querySelector('picture');
       const link = item.querySelector('a');
 
       if (picture && link) {
-        // Add cursor style so it looks clickable
         picture.style.cursor = 'pointer';
 
-        // Add click event to navigate to the link's href
         picture.addEventListener('click', () => {
           window.location.href = link.href;
         });
@@ -189,7 +176,6 @@ export default async function decorate(block) {
     });
   }
 
-  // Add overlay for sidebar
   const overlay = document.createElement('div');
   overlay.classList.add('nav-sidebar-overlay');
   overlay.addEventListener('click', toggleSidebar);
@@ -205,7 +191,6 @@ export default async function decorate(block) {
     nav.append(navTools);
   }
 
-  // Add sidebar and overlay to nav wrapper
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
