@@ -16,7 +16,8 @@
       "cards",
       "columns",
       "fragment",
-      "menu-list-box"
+      "game-carousel-card",
+      "icons-link"
     ]
   },
   {
@@ -41,9 +42,15 @@
     ]
   },
   {
-    "id": "menu-list-box",
+    "id": "game-carousel-card",
     "components": [
-      "menu-list-item"
+      "game-cards-item"
+    ]
+  },
+  {
+    "id": "icons-link",
+    "components": [
+      "icons-link-item"
     ]
   }
 ]
