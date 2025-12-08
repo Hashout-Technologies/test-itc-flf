@@ -1,20 +1,166 @@
+/* stylelint-disable no-descending-specificity */
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+    background-color: var(--light-color);
+    font-size: var(--body-font-size-xs);
 }
 
+.footer {
+    position: relative;
+}
+
+
 footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+    padding: 0 4.375rem 2.5rem;
+    z-index: 1;
+    position: relative;
+}
+
+footer .footer > div > div:first-child {
+    padding-top: 10.375rem;
 }
 
 footer .footer p {
-  margin: 0;
+    margin: 0;
+    color: var(--color-white);
+    font-family: var(--secondary-font-family);
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
-  }
+footer .footer a {
+    color: var(--color-white);
+    text-decoration: none;
+}
+
+.footer.block {
+    max-width: 23.4375rem;
+    margin: 0 auto;
+    background-color: var(--color-orange);
+}
+
+.footer a.button {
+    background-color: transparent;
+    font-weight: var(--font-weight-bold);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: var(--color-white);
+    margin: 0;
+    font-family: var(--secondary-font-family);
+}
+
+/* icons link */
+.footer .icons-link {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.footer .icons-link-list {
+    gap: 1.5rem;
+}
+
+.footer .icons-link .icons-link-title p {
+    font-weight: var(--font-weight-bold);
+    font-size: 1.75rem;
+    line-height: 2rem;
+    color: var(--color-white);
+    text-align: center;
+    font-family: var(--body-font-family);
+}
+
+.footer .icons-link a:hover {
+    transform: scale(1.3334);
+}
+
+.footer .section .icons-link-wrapper:not(:first-child) .icons-link a {
+    width: 2.6875rem;
+    height: 2.6875rem;
+    display: block;
+    transition: transform 0.2s linear, -webkit-transform 0.2s linear;
+    font-family: var(--body-font-family);
+}
+
+.footer::before {
+    content: "";
+    background-image: url("../../images/scalloped-curve-white.svg");
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+.footer::after {
+    content: "";
+    background-image: url("../../images/biscuit.svg");
+    position: absolute;
+    right: 0;
+    top: -10.375rem;
+    height: 100%;
+    width: 100%;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+/* column */
+.footer .columns p a {
+    padding: 0;
+    border: none;
+    overflow: unset;
+    text-align: left;
+    text-decoration: none;
+}
+
+.footer .columns.columns-2-cols {
+    margin: 1.25rem 0 2.5rem;
+}
+
+.footer .columns.columns-2-cols div {
+    align-items: flex-start;
+}
+
+.footer .columns.columns-2-cols div p:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.footer .columns div > div:first-child {
+    position: relative;
+    padding-right: 1.5rem;
+}
+
+.footer .columns div > div:first-child::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: var(--color-white);
+    opacity: 0.3;
+    height: 100%;
+    width: 0.125rem;
+}
+
+.footer .columns.column-2-cols a {
+    font-weight: var(--font-weight-bold);
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.footer .section .columns-wrapper:nth-child(4) .columns.columns-2-cols a {
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+}
+
+.footer .section .columns-wrapper:nth-child(4) .columns.columns-2-cols {
+    margin-bottom: 0.75rem;
+    padding: 0 1.25rem;
+}
+
+.footer .default-content-wrapper p {
+    font-family: var(--secondary-font-family);
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.625rem;
+    line-height: 0.875rem;
+    padding: 0 1.25rem;
 }

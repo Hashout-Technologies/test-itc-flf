@@ -15,7 +15,9 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "game-carousel-card",
+      "icons-link"
     ]
   },
   {
@@ -37,6 +39,18 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "game-carousel-card",
+    "components": [
+      "game-cards-item"
+    ]
+  },
+  {
+    "id": "icons-link",
+    "components": [
+      "icons-link-item"
     ]
   }
 ]
