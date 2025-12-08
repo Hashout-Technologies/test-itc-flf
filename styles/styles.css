@@ -23,12 +23,13 @@
   --color-grey-100: #b8b8b8;
 
   /* Common Colors */
-  --color-dark-red: #BB1F3B;
+  --color-dark-red: #bb1f3b;
   --color-white: #fff;
+  --color-orange: #f37906;
 
   /* fonts */
   --body-font-family: 'Bricolage Grotesque', 'Nunito Sans', roboto, roboto-fallback, sans-serif;
-  --heading-font-family: 'Bricolage Grotesque', 'Nunito Sans', roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --secondary-font-family: 'Nunito Sans', roboto-condensed, roboto-condensed-fallback, sans-serif;
 
   /* Font Weights */
     --font-weight-regular: 400;
@@ -163,15 +164,15 @@ pre {
 }
 
 pre {
-  padding: 1rem;          /* 16px */
-  border-radius: 0.5rem;  /* 8px */
+  padding: 1rem;
+  border-radius: 0.5rem;
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
 }
 
 main > div {
-  margin: 2.5rem 1rem; /* 40px 16px */
+  margin: 2.5rem 1rem;
 }
 
 input,
@@ -199,8 +200,8 @@ button {
   box-sizing: border-box;
   display: inline-block;
   max-width: 100%;
-  margin: 0.75rem 0;       /* 12px */
-  border: 0.125rem solid transparent; /* 2px */
+  margin: 0.75rem 0;
+  border: 0.125rem solid transparent;
   border-radius: 2.4em;
   padding: 0.5em 1.2em;
   font-family: var(--body-font-family);
@@ -234,7 +235,7 @@ button:disabled:hover {
 a.button.secondary,
 button.secondary {
   background-color: unset;
-  border: 0.125rem solid currentcolor; /* 2px */
+  border: 0.125rem solid currentcolor;
   color: var(--text-color);
 }
 
@@ -263,7 +264,7 @@ main > .section {
 }
 
 main > .section > div {
-  padding: 0 1rem; /* 24px */
+  padding: 0 1rem;
 }
 
 main > .section:first-of-type {
