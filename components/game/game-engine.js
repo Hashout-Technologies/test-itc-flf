@@ -14,6 +14,7 @@ import { generateRandomUsername, getStoredUserData, getFirstName } from './game-
 import { GAME_SECTIONS, GAMES } from './game-config.js';
 
 export class GameEngine {
+  static games = GAMES;
   constructor(block) {
     this.block = block;
     
