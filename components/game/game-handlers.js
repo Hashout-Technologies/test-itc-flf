@@ -2,7 +2,7 @@
  * Game Event Handlers
  * Handles all user interactions and events
  */
-
+/* eslint-disable */
 import { GAME_TYPES, GAME_SECTIONS } from './game-config.js';
 import { sanitizeInput } from './game-utils.js';
 

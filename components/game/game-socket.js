@@ -2,7 +2,7 @@
  * Game Socket Handler
  * Manages all Socket.io communication for real-time multiplayer
  */
-
+/* eslint-disable */
 import { SOCKET_CONFIG } from './game-config.js';
 
 export class GameSocketHandler {

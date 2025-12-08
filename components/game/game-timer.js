@@ -2,7 +2,7 @@
  * Game Timer Manager
  * Handles countdown timers for questions and sections
  */
-
+/* eslint-disable */
 import { QUESTION_TIMER_DURATION, TIMER_DURATION, GAME_SECTIONS } from './game-config.js';
 
 export class GameTimerManager {

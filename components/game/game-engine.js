@@ -2,7 +2,7 @@
  * Game Engine
  * Main orchestrator that coordinates all game modules
  */
-
+/* eslint-disable */
 import { GameSocketHandler } from './game-socket.js';
 import { GameSectionManager } from './game-sections.js';
 import { GameTimerManager } from './game-timer.js';

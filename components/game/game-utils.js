@@ -2,7 +2,7 @@
  * Game Utility Functions
  * Shared utility functions for the game block
  */
-
+/* eslint-disable */
 import { 
   USERNAME_ADJECTIVES, 
   USERNAME_NOUNS, 

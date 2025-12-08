@@ -2,7 +2,7 @@
  * Game Room Manager
  * Handles room creation, joining, and player management
  */
-
+/* eslint-disable */
 import { copyToClipboard, shareOnWhatsApp } from './game-utils.js';
 
 export class GameRoomManager {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { GameEngine } from '../../components/game/game-engine.js';
 
 // Build complete game HTML

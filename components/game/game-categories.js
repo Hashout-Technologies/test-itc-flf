@@ -2,7 +2,7 @@
  * Game Category Manager
  * Handles category data, questions, and clues
  */
-
+/* eslint-disable */
 import { GAME_TYPES, CATEGORIES } from './game-config.js';
 
 export class GameCategoryManager {

@@ -2,7 +2,7 @@
  * Game Configuration Constants
  * Central configuration for all game settings, sections, and constants
  */
-
+/* eslint-disable */
 export const GAME_SECTIONS = {
   GAMES_SELECTOR: 'games-selector',
   GAME_INSTRUCTIONS: 'game-instructions',

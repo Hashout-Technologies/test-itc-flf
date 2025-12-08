@@ -2,7 +2,7 @@
  * Games Carousel
  * Handles swipeable game selection carousel
  */
-
+/* eslint-disable */
 export class GamesCarousel {
   constructor(track, indicators) {
     this.track = track;

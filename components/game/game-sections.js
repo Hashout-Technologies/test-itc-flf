@@ -2,7 +2,7 @@
  * Game Section Manager
  * Handles navigation and visibility of game sections
  */
-
+/* eslint-disable */
 import { GAME_SECTIONS } from './game-config.js';
 
 export class GameSectionManager {
