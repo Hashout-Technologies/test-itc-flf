@@ -21,7 +21,7 @@ export class GameCategoryManager {
    */
   async fetchCategories() {
     try {
-      const response = await fetch('/asset/categories.json');
+      const response = await fetch('../../blocks/games/categories.json');
       if (!response.ok) throw new Error('Failed to fetch');
       
       const data = await response.json();
