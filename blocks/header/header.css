@@ -11,13 +11,12 @@ header nav {
   justify-content: space-between;
   align-items: center;
   grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0 24px;
+  gap: 0 1.5rem;
   margin: auto;
   width: 100%;
   max-width: 33.75rem;
   height: var(--nav-height);
-  padding: 0 24px;
+  padding: 0 1.5rem;
   font-family: var(--body-font-family);
   background-color: #fef5eb;
   box-shadow: 0 0.625rem 2.5625rem 0 rgb(187 42 42 / 22.7%);
@@ -36,14 +35,14 @@ header nav a:any-link {
 
 /* hamburger at start */
 header nav .nav-hamburger {
-  height: 22px;
+  height: 1.375rem;
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
 header nav .nav-hamburger button {
-  height: 22px;
+  height: 1.375rem;
   margin: 0;
   border: 0;
   border-radius: 0;
@@ -59,8 +58,8 @@ header nav .nav-hamburger button {
 header nav .nav-hamburger-icon {
   display: block;
   position: relative;
-  width: 22px;
-  height: 22px;
+  width: 1.375rem;
+  height: 1.375rem;
   cursor: pointer;
 }
 
@@ -91,7 +90,7 @@ header nav .nav-brand {
 }
 
 header nav .nav-brand img {
-  width: 113px;
+  width: 7.063rem;
   margin-top: 2.3rem;
 }
 
@@ -108,7 +107,7 @@ header .nav-sidebar {
 
   /* top: 0;
   left: 0; */
-  width: 280px;
+  width: 17.5rem;
   max-width: 85vw;
   height: 100vh;
   background-color: var(--background-color);
@@ -116,7 +115,7 @@ header .nav-sidebar {
   transition: transform 0.3s ease-in-out;
   z-index: 2;
   overflow-y: auto;
-  padding: calc(var(--nav-height) + 24px) 0 0;
+  padding: calc(var(--nav-height) + 1.5rem) 0 0;
   display: none;
   flex-direction: column;
 }
@@ -135,7 +134,7 @@ header .nav-sidebar.open {
 header .nav-sidebar .nav-sections {
   display: block;
   visibility: visible;
-  padding: 0 24px;
+  padding: 0 1.5rem;
 }
 
 header .nav-sidebar .nav-sections ul {
@@ -146,13 +145,13 @@ header .nav-sidebar .nav-sections ul {
 
 header .nav-sidebar .nav-sections ul > li {
   font-weight: 500;
-  padding: 12px 0;
+  padding: 0.75rem 0;
   cursor: pointer;
 }
 
 header .nav-sidebar .nav-sections ul > li > ul {
-  margin-top: 8px;
-  padding-left: 16px;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
   display: none;
 }
 
@@ -162,7 +161,7 @@ header .nav-sidebar .nav-sections ul > li[aria-expanded='true'] > ul {
 
 header .nav-sidebar .nav-sections ul > li > ul > li {
   font-weight: 400;
-  padding: 8px 0;
+  padding: 0.5rem 0;
   border-bottom: none;
 }
 
@@ -173,7 +172,7 @@ header .nav-sidebar .nav-sections ul > li:last-child {
 header .nav-sidebar .nav-sections .nav-drop {
   cursor: pointer;
   position: relative;
-  padding-right: 24px;
+  padding-right: 1.5rem;
 }
 
 header .nav-sidebar .nav-sections .nav-drop::after {
@@ -182,11 +181,11 @@ header .nav-sidebar .nav-sections .nav-drop::after {
   top: 50%;
   right: 0;
   transform: translateY(-50%) rotate(135deg);
-  width: 6px;
-  height: 6px;
-  border: 2px solid currentcolor;
-  border-radius: 0 1px 0 0;
-  border-width: 2px 2px 0 0;
+  width: 0.375rem;
+  height: 0.375rem;
+  border: 0.125rem solid currentcolor;
+  border-radius: 0 0.063rem 0 0;
+  border-width: 0.125rem 0.125rem 0 0;
   transition: transform 0.2s;
 }
 
@@ -272,7 +271,7 @@ header .nav-sidebar-footer .itc-footer__nav-column {
 }
 
 header .nav-sidebar-footer .itc-footer__nav-separator {
-  width: 2px;
+  width: 0.125rem;
   background-color: white;
   opacity: 0.3;
   margin: 0 1rem;
@@ -281,7 +280,7 @@ header .nav-sidebar-footer .itc-footer__nav-separator {
 header .nav-sidebar-footer .itc-footer__link {
   color: white;
   text-decoration: none;
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   transition: opacity 0.3s ease;
 }
@@ -299,8 +298,8 @@ header .nav-sidebar-footer .itc-footer__social {
 
 header .nav-sidebar-footer .itc-footer__social-title {
   font-weight: 700;
-  font-size: 21.82px;
-  line-height: 24.94px;
+  font-size: 1.364rem;
+  line-height: 1.558rem;
   text-align: center;
   margin-bottom: 1rem;
   color: white;
@@ -315,7 +314,7 @@ header .nav-sidebar-footer .itc-footer__social-icons {
 header .nav-sidebar-footer .itc-footer__social-icon {
   width: 2.5rem;
   height: 2.5rem;
-  border: 2px solid white;
+  border: 0.125rem solid white;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -348,8 +347,8 @@ header .nav-sidebar-footer .itc-footer__footer-link {
   color: white;
   text-decoration: none;
   font-weight: 700;
-  font-size: 10.91px;
-  line-height: 14.03px;
+  font-size: 0.682rem;
+  line-height: 0.877rem;
   transition: opacity 0.3s ease;
 }
 
@@ -360,7 +359,7 @@ header .nav-sidebar-footer .itc-footer__footer-link:hover {
 }
 
 header .nav-sidebar-footer .itc-footer__link-separator {
-  width: 1px;
+  width: 0.063rem;
   height: 1rem;
   background-color: white;
   opacity: 0.3;
@@ -372,8 +371,8 @@ header .nav-sidebar-footer .itc-footer__copyright {
 
 header .nav-sidebar-footer .itc-footer__copyright p {
   font-weight: 600;
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 0.625rem;
+  line-height: 0.875rem;
   letter-spacing: 0;
   vertical-align: middle;
   color: white;
