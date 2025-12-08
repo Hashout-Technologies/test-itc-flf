@@ -128,3 +128,8 @@
     background-image: url("../../icons/star.svg");
     background-color: transparent;
 }
+
+.game-carousel-card{
+    position: relative;
+    z-index: 999;
+}
