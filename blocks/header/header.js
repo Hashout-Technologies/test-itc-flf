@@ -66,7 +66,6 @@ export default async function decorate(block) {
   const navTools = nav.querySelector('.nav-tools');
   const navSections = nav.querySelector('.nav-sections');
 
-  // --- 1. CUSTOM LOGIC FOR BRAND LOGO ---
   if (navBrand) {
     const authoredLink = navBrand.querySelector('a');
     const authoredImage = navBrand.querySelector('picture');
@@ -96,7 +95,6 @@ export default async function decorate(block) {
     }
   }
 
-  // --- 2. CUSTOM LOGIC FOR NOTIFICATION ICON (NAV TOOLS) ---
   if (navTools) {
     const toolsLink = navTools.querySelector('a');
     const toolsImage = navTools.querySelector('picture');
@@ -316,10 +314,8 @@ export default async function decorate(block) {
       }
     });
 
-    // --- 3. NEW: MAKE MENU IMAGES CLICKABLE ---
     // Select the wrapper divs in the menu list
     const menuItems = navSections.querySelectorAll('.menu-list-box > div');
-    
     menuItems.forEach((item) => {
       // Find the image and the text link within this item
       const picture = item.querySelector('picture');
@@ -363,6 +359,5 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   navWrapper.append(sidebar);
   navWrapper.append(overlay);
-
   block.append(navWrapper);
 }
