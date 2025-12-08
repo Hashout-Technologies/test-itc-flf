@@ -1,6 +1,8 @@
 /* stylelint-disable property-no-vendor-prefix */
 /* stylelint-disable no-descending-specificity */
+
 /* header and nav layout */
+
 header .nav-wrapper {
   max-width: var(--layout-width);
   margin: 0 auto;
