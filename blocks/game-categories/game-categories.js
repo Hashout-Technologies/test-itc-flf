@@ -1,16 +1,16 @@
 import { CreateElem } from '../../scripts/utils.js';
 
 export default function decorate(block) {
-  const allDivs = Array.from(block.children);
+  const allDivs = [...block.children];
 
-  const titleDiv = allDivs.shift();
+  const titleDiv = allDivs[0];
   titleDiv.classList.add('game-category-title');
 
   const instructionsWrapper = CreateElem('div', 'game-instructions-list');
 
-  allDivs.forEach((item) => {
+  allDivs.slice(1).forEach((item) => {
     const instructionItem = CreateElem('div', 'game-instruction-item');
-    const innerDivs = Array.from(item.children);
+    const innerDivs = [...item.children];
 
     const imageContainerDiv = innerDivs[0];
     const altTextDiv = innerDivs[1];
@@ -31,8 +31,8 @@ export default function decorate(block) {
     descriptionDiv.className = 'game-instruction-item-description';
     instructionItem.append(imageContainerDiv, descriptionDiv);
     instructionsWrapper.append(instructionItem);
+    item.remove();
   });
 
-  block.innerHTML = '';
-  block.append(titleDiv, instructionsWrapper);
+  block.append(instructionsWrapper);
 }
