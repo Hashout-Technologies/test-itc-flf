@@ -1,0 +1,120 @@
+.game-categories .game-category-title h1,
+.game-categories .game-category-title h2 {
+    font-weight: var(--font-weight-medum);
+    font-size: 1.75rem;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.game-categories .game-category-title h1 {
+    color: var(--color-dark-grey);
+    margin-bottom: 0;
+}
+
+.game-categories .game-category-title h2 {
+    color: var(--color-dark-red);
+    margin-top: 0;
+    font-weight: var(--font-weight-bold);
+}
+
+.game-categories .game-instructions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.game-categories .game-instructions-list .game-instruction-item {
+    background-color: var(--color-peach-cream);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.125rem 0.75rem 1.25rem;
+    display: flex;
+    gap: 1.25rem;
+}
+
+.game-categories .game-instruction-item-image {
+    width: 2.875rem;
+    height: 2.875rem;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.625rem;
+}
+
+.game-categories .game-instruction-item-image img {
+    width: 1.625rem;
+    height: 1.625rem;
+    flex: 0 0 auto;
+}
+
+.game-categories .game-instruction-item-description p {
+    font-family: var(--secondary-font-family);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    color: var(--color-medium-grey);
+    margin: 0 0 0.25rem;
+}
+
+.game-categories .game-instruction-item-description *:not(p) {
+    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: var(--color-dark-grey);
+    margin: 0;
+}
+
+.game-categories .game-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.75rem;
+}
+
+.game-categories .game-actions .create-room-btn {
+    background-color: var(--color-dark-red);
+    padding: 1rem 3.75rem;
+    width: 16.9375rem;
+    opacity: 1;
+    border-radius: 6.25rem;
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    line-height: 1.25rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-white);
+    text-decoration: none;
+    position: relative;
+}
+
+.game-categories .game-actions .create-room-btn::after {
+    content: "";
+    background-image: url("../../icons/white-bg-red-arrow.svg");
+    display: flex;
+    top: 50%;
+    right: 3.125rem;
+    transform: translateY(-50%);
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.game-categories .game-actions .join-room-btn {
+    background-color: transparent;
+    padding: 1rem 3.75rem;
+    width: 16.9375rem;
+    opacity: 1;
+    border-radius: 6.25rem;
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    line-height: 1.25rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-dark-red);
+    border: 0.125rem solid var(--color-dark-red);
+    text-decoration: none;
+}

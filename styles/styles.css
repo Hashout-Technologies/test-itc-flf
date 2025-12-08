@@ -24,6 +24,7 @@
   /* Neutral Colors */
   --color-grey-100: #b8b8b8;
   --color-dark-grey: #1F1F1F;
+  --color-medium-grey: #535252;
 
   /* Common Colors */
   --color-dark-red: #bb1f3b;
@@ -265,6 +266,8 @@ main > .section {
   max-width: var(--layout-width);
   margin: auto;
   background-color: var(--color-white);
+  position: relative;
+  z-index: 999;
 }
 
 main > .section > div {
