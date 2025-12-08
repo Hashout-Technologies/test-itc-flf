@@ -11,6 +11,8 @@
  */
  
 :root {
+  --layout-width: 23.4375rem;
+
   /* colors */
   --background-color: white;
   --light-color: #f8f8f8;
@@ -21,11 +23,13 @@
 
   /* Neutral Colors */
   --color-grey-100: #b8b8b8;
+  --color-dark-grey: #1F1F1F;
 
   /* Common Colors */
   --color-dark-red: #bb1f3b;
   --color-white: #fff;
   --color-orange: #f37906;
+  --color-peach-cream: #fef5eb;
 
   /* fonts */
   --body-font-family: 'Bricolage Grotesque', 'Nunito Sans', roboto, roboto-fallback, sans-serif;
@@ -258,7 +262,7 @@ main img {
 
 /* sections */
 main > .section {
-  max-width: 23.4375rem;
+  max-width: var(--layout-width);
   margin: auto;
   background-color: var(--color-white);
 }
