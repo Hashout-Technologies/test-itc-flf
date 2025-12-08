@@ -16,7 +16,10 @@
       "cards",
       "columns",
       "fragment",
-      "games"
+      "game-carousel-card",
+      "icons-link",
+      "menu-list-box",
+      "game-categories"
     ]
   },
   {
@@ -38,6 +41,30 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "game-carousel-card",
+    "components": [
+      "game-cards-item"
+    ]
+  },
+  {
+    "id": "game-categories",
+    "components": [
+      "game-instructions-item"
+    ]
+  },
+  {
+    "id": "icons-link",
+    "components": [
+      "icons-link-item"
+    ]
+  },
+  {
+    "id": "menu-list-box",
+    "components": [
+      "menu-list-item"
     ]
   }
 ]

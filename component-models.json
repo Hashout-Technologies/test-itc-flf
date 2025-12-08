@@ -190,6 +190,108 @@
     ]
   },
   {
+    "id": "game-carousel-card",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "game-cards-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "card-title",
+        "label": "Card Title",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "card-image-alt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "CTA Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "cta-text",
+        "label": "CTA Text",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "game-categories",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Game Category Type",
+        "description": "",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Category Game",
+            "value": "category-game"
+          },
+          {
+            "name": "Who is in the Dark",
+            "value": "who-is-in-the-dark"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "name": "category-title",
+        "label": "Game Category Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "game-instructions-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "alt-text",
+        "label": "Alt Text",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "instruction-description",
+        "label": "Description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {
@@ -211,6 +313,60 @@
         "name": "text",
         "value": "",
         "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "icons-link",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "",
+        "label": "Title",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "icons-link-item",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Icon Link"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon-image",
+        "label": "Icon Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "alt-text",
+        "value": "",
+        "label": "Icon Alt Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "menu-list-item",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "heading",
+        "value": "",
+        "label": "Link Details",
         "valueType": "string"
       }
     ]
