@@ -1,11 +1,6 @@
-/* eslint-disable */
-import { GameEngine } from '../../components/game/game-engine.js';
-
 // Build complete game HTML
-function buildGameHTML() {
+export function buildGameHTML() {
   return `
-    ${buildGamesSelector()}
-    ${buildGameInstructions()}
     ${buildGameRoomCreation()}
     ${buildGameRoomJoining()}
     ${buildGameRoomDetails()}
@@ -22,105 +17,7 @@ function buildGameHTML() {
     ${buildRevealAnswer()}
     ${buildWinner()}
     ${buildLeaderboard()}
-  `;
-}
-
-function buildGamesSelector() {
-  return `
-    <section id="games-selector" class="games-selector active" style="display: block;">
-      <div class="games-selector__title">
-        Hi <span class="games-selector__name red">Player,</span><br />
-        Ready for some fun?
-      </div>
-      
-      <div class="games-carousel">
-        <div class="games-carousel__container">
-          <div class="games-carousel__track">
-            ${GameEngine.games.map(game => `
-              <div class="game-card">
-                <div class="game-card__game-title">
-                  ${game.name.split(' ').map(word => `<div class="part">${word}</div>`).join('')}
-                </div>
-                <button class="game-card__play-button">
-                  <span>PLAY GAME</span>
-                  <div class="play-arrow">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
-                      <path d="M6 4l6 4-6 4V4z"/>
-                    </svg>
-                  </div>
-                </button>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-        
-        <div class="games-carousel__indicators">
-          ${GameEngine.games.map((_, i) => `
-            <button class="indicator ${i === 0 ? 'active' : ''}" data-slide="${i}" aria-label="Go to slide ${i + 1}"></button>
-          `).join('')}
-        </div>
-      </div>
-    </section>
-  `;
-}
-
-function buildGameInstructions() {
-  return `
-    <section id="game-instructions" class="game-instructions">
-      <div class="game-instructions__title">
-        How to play <br /><span class="red" id="game-instructions-name">Category Game</span>
-      </div>
-      
-      <div class="game-instructions__content">
-        <div class="game-instructions__content-item">
-          <div class="icon">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="#BB1F3B">
-              <circle cx="13" cy="13" r="10"/>
-            </svg>
-          </div>
-          <div class="content">
-            <h3>Step 1</h3>
-            <p>Choose from fun topics like food, movies, music, or sports.</p>
-          </div>
-        </div>
-        
-        <div class="game-instructions__content-item">
-          <div class="icon">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="#BB1F3B">
-              <circle cx="13" cy="13" r="10"/>
-            </svg>
-          </div>
-          <div class="content">
-            <h3>Step 2</h3>
-            <p>Write your answer to the question.</p>
-          </div>
-        </div>
-        
-        <div class="game-instructions__content-item">
-          <div class="icon">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="#BB1F3B">
-              <circle cx="13" cy="13" r="10"/>
-            </svg>
-          </div>
-          <div class="content">
-            <h3>Step 3</h3>
-            <p>Predict what your friends said to score points.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="game-instructions__buttons">
-        <button class="button-create">
-          <span>CREATE ROOM</span>
-          <div class="arrow-right">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="#BB1F3B">
-              <path d="M9 5l7 7-7 7V5z"/>
-            </svg>
-          </div>
-        </button>
-        <button class="button-join">JOIN ROOM</button>
-      </div>
-    </section>
+    ${notQualifiedPopup()}
   `;
 }
 
@@ -140,10 +37,7 @@ function buildGameRoomCreation() {
           <div class="code-container">
             <span class="room-code">ABCD12</span>
             <div class="copy-icon">
-              <svg width="29" height="29" viewBox="0 0 24 24" fill="#F37906">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
+              <img src="./icons/copy.svg" alt="copy"/>
             </div>
           </div>
           <p>Friends can use this code to join your room</p>
@@ -209,23 +103,14 @@ function buildGameRoomDetails() {
           <div class="actions">
             <div class="copy">
               <div class="copy-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                </svg>
+                <img src="./icons/copy2.svg" alt="copy"/>
               </div>
               <span>Copy Code</span>
             </div>
             <div class="separator"></div>
             <div class="share">
               <div class="share-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                  <circle cx="18" cy="5" r="3"/>
-                  <circle cx="6" cy="12" r="3"/>
-                  <circle cx="18" cy="19" r="3"/>
-                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-                </svg>
+                <img src="./icons/share.svg" alt="share"/>
               </div>
               <span>Share Code</span>
             </div>
@@ -259,6 +144,9 @@ function buildChooseCategory() {
           <div class="button">
             <button class="lets-start-button" disabled>LET'S START</button>
           </div>
+           <div class="non-host-waiting-msg" style="display: none;">
+              Waiting for HOST to choose the category
+            </div>
         </div>
       </div>
     </section>
@@ -315,7 +203,7 @@ function buildYoureInDark() {
 function buildCategoryQuestion(questionNum) {
   const questions = {
     1: "What's your favorite food in this category?",
-    2: "When would you typically eat this type of food?"
+    2: 'When would you typically eat this type of food?',
   };
 
   return `
@@ -374,7 +262,7 @@ function buildCategoryQuestion(questionNum) {
           <p class="char-count">0/30 characters</p>
         </div>
         <div class="button">
-          <button class="${questionNum === 2 ? 'save-next-button' : 'next-button'}" disabled>
+          <button class="${questionNum === 2 ? 'save-next-button' : 'next-button'}">
             ${questionNum === 2 ? 'SAVE AND NEXT' : 'NEXT'}
           </button>
         </div>
@@ -385,8 +273,8 @@ function buildCategoryQuestion(questionNum) {
 
 function buildDarkQuestion(questionNum) {
   const questions = {
-    1: "What food would you pair this dish with?",
-    2: "What time of the day would you have this dish?"
+    1: 'What food would you pair this dish with?',
+    2: 'What time of the day would you have this dish?',
   };
 
   return `
@@ -445,7 +333,7 @@ function buildDarkQuestion(questionNum) {
           <p class="char-count">0/30 characters</p>
         </div>
         <div class="button">
-          <button class="${questionNum === 2 ? 'save-next-button' : 'next-button'}" disabled>
+          <button class="${questionNum === 2 ? 'save-next-button' : 'next-button'}">
             ${questionNum === 2 ? 'SAVE AND NEXT' : 'NEXT'}
           </button>
         </div>
@@ -737,51 +625,39 @@ function buildLeaderboard() {
           <div class="button">
             <button class="load-more-button">LOAD MORE</button>
           </div>
+
+          <div class="buttons">
+              <button class="new-game-button">NEW GAME</button>
+              <button class="play-more-button">PLAY MORE</button>
+            </div>
         </div>
       </div>
     </section>
   `;
 }
 
-/**
- * EDS Block Decorator
- * Initialize the games block
- */
-export default async function decorate(block) {
-  // Build and inject HTML
-  const html = buildGameHTML();
-  block.innerHTML = html;
-
-  // Wait for DOM to be ready
-  await new Promise(resolve => {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', resolve);
-    } else {
-      resolve();
-    }
-  });
-
-  try {
-    // Initialize the game engine with modular architecture
-    const gameEngine = new GameEngine(block);
-    
-    // Store reference on block for debugging/testing
-    block.gameEngine = gameEngine;
-    
-    // Log successful initialization
-    console.log('Games block initialized successfully');
-  } catch (error) {
-    console.error('Error initializing games block:', error);
-    
-    // Show fallback UI
-    block.innerHTML = `
-      <div style="padding: 2rem; text-align: center;">
-        <h2>Unable to load games</h2>
-        <p>Please refresh the page or try again later.</p>
-        <button onclick="location.reload()" style="margin-top: 1rem; padding: 0.5rem 1rem;">
-          Refresh Page
-        </button>
+function notQualifiedPopup() {
+    return `
+    <div id="not-qualified-popup" class="popup-overlay hidden">
+      <div class="popup-content">
+        <div class="popup-header">
+          <div class="img-container">
+            <img src="./icons/alarm-clock.svg" alt="Alarm Clock Icon" class="popup-icon" />
+          </div>
+          <h3>Not Qualified</h3>
+        </div>
+        <p class="popup-message">
+          Since you missed submitting your answer, you’re out for this round.
+        </p>
+        <button class="popup-button">I UNDERSTAND</button>
       </div>
-    `;
-  }
+    </div>
+
+    <div id="room-closed-popup" class="popup hidden">
+      <div class="popup-content">
+          <h3>Game Ended</h3>
+          <p>The host has ended the game.</p>
+          <button id="popup-ok-button">OK</button>
+      </div>
+    </div>`;
 }

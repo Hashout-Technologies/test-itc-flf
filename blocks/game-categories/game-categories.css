@@ -1,3 +1,6 @@
+/* stylelint-disable no-descending-specificity */
+@import url('./game-flow.css');
+
 .game-categories .game-category-title h1,
 .game-categories .game-category-title h2 {
     font-weight: var(--font-weight-medum);
@@ -9,6 +12,7 @@
 .game-categories .game-category-title h1 {
     color: var(--color-dark-grey);
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 .game-categories .game-category-title h2 {
@@ -89,6 +93,9 @@
     color: var(--color-white);
     text-decoration: none;
     position: relative;
+    border: none;
+    cursor: pointer;
+    margin: 0;
 }
 
 .game-categories .game-actions .create-room-btn::after {
@@ -117,4 +124,47 @@
     color: var(--color-dark-red);
     border: 0.125rem solid var(--color-dark-red);
     text-decoration: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+.game-categories-wrapper{
+    padding: 0 !important;
+}
+
+#game-room-creation .wrapper::before,
+#game-room-joining .wrapper::before,
+#game-room-details .wrapper::before{
+    content: '';
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+#game-room-creation .wrapper::before{
+    background-image: url('../../images/white-shade-bg.svg');
+}
+
+#game-room-details .wrapper::before{
+    background-image: url('../../images/white-shade-large-bg.svg');
+}
+
+#game-room-joining .wrapper::before{
+    background-image: url('../../images/white-shade-bg.svg');
+}
+
+
+.game-categories button{
+    margin: 0;
+}
+
+.game-category-title, .game-instructions-list, .game-actions{
+    padding-inline: 1rem;
+}
+
+.game-category-title{
+    padding-top: 2.625rem;
 }

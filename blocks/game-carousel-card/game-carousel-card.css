@@ -5,6 +5,7 @@
     line-height: 2rem;
     letter-spacing: 0;
     text-align: center;
+    margin-top: 0;
 }
 
 .game-carousel-card .carousel-card-item-title {
@@ -132,4 +133,8 @@
 .game-carousel-card{
     position: relative;
     z-index: 999;
+}
+
+.game-carousel-card .title{
+    padding-top: 2.625rem;
 }

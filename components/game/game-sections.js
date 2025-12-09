@@ -1,52 +1,30 @@
-/**
- * Game Section Manager
- * Handles navigation and visibility of game sections
- */
-/* eslint-disable */
+/* eslint-disable class-methods-use-this */
+// /**
+//  * Game Section Manager
+//  * Handles navigation and visibility of game sections
+//  */
 import { GAME_SECTIONS } from './game-config.js';
 
 export class GameSectionManager {
   constructor(gameEngine) {
     this.gameEngine = gameEngine;
     this.sections = GAME_SECTIONS;
-    this.currentSection = GAME_SECTIONS.GAMES_SELECTOR;
   }
 
-  /**
-   * Show a specific section
-   */
+  // Show a specific section
   showSection(sectionId) {
-    // Stop any running timers
-    if (this.gameEngine.timerManager) {
-      this.gameEngine.timerManager.stopTimer();
-    }
-
-    // Hide all sections
+    this.gameEngine.stopTimer();
     this.hideAllSections();
-
-    // Show target section
     this.activateSection(sectionId);
-
-    // Update UI elements
-    this.updateCurveImages();
-
-    // Trigger section-specific updates
-    if (this.gameEngine.updateButtonText) {
-      this.gameEngine.updateButtonText(sectionId);
-    }
-
-    // Start timer if needed
-    if (this.gameEngine.timerManager) {
-      this.gameEngine.timerManager.startTimerForSection();
-    }
+    this.gameEngine.updateCurveImages();
+    this.gameEngine.updateButtonText(sectionId);
+    this.gameEngine.startTimerForSection();
   }
 
-  /**
-   * Hide all sections
-   */
+  // Hide all sections
   hideAllSections() {
     Object.values(this.sections).forEach((id) => {
-      const section = this.gameEngine.block.querySelector(`#${id}`);
+      const section = document.getElementById(id);
       if (section) {
         section.classList.remove('active');
         section.style.display = 'none';
@@ -54,76 +32,67 @@ export class GameSectionManager {
     });
   }
 
-  /**
-   * Activate a specific section
-   */
+  // Activate a section
   activateSection(sectionId) {
-    const targetSection = this.gameEngine.block.querySelector(`#${sectionId}`);
+    const targetSection = document.getElementById(sectionId);
     if (targetSection) {
       targetSection.classList.add('active');
       targetSection.style.display = 'block';
-      this.currentSection = sectionId;
+      this.gameEngine.currentSection = sectionId;
 
-      // Update main background color
-      const main = this.gameEngine.block.closest('main');
-      if (main) {
-        const isWhiteBg = [
-          GAME_SECTIONS.GAMES_SELECTOR,
-          GAME_SECTIONS.GAME_INSTRUCTIONS
-        ].includes(sectionId);
-        main.style.backgroundColor = isWhiteBg ? 'white' : '#bb1f3b';
+      // Update reveal-answer section with clue data
+      if (sectionId === 'reveal-answer' && this.gameEngine.selectedClue) {
+        if (this.gameEngine.handlers && this.gameEngine.handlers.updateClueDisplay) {
+          this.gameEngine.handlers.updateClueDisplay(this.gameEngine.selectedClue);
+        }
       }
     }
   }
 
-  /**
-   * Get current section ID
-   */
+  // Get current section
   getCurrentSection() {
-    return this.currentSection;
+    return this.gameEngine.currentSection;
   }
 
-  /**
-   * Update curve images based on current section
-   */
+  // Update curve images based on current section
   updateCurveImages() {
-    const whiteImage = this.gameEngine.block.querySelector(
-      '.background-pattern .curve-img.white'
+    const whiteImage = document.querySelector(
+      '.background-pattern .curve-img.white',
     );
-    const maroonImage = this.gameEngine.block.querySelector(
-      '.background-pattern .curve-img.maroon'
+    const maroonImage = document.querySelector(
+      '.background-pattern .curve-img.maroon',
     );
 
-    const showWhite = [
-      GAME_SECTIONS.GAMES_SELECTOR,
-      GAME_SECTIONS.GAME_INSTRUCTIONS
-    ].includes(this.currentSection);
+    const showWhite = ['games-selector', 'game-instructions'].includes(
+      this.gameEngine.currentSection,
+    );
 
-    if (whiteImage) whiteImage.classList.toggle('show', showWhite);
-    if (maroonImage) maroonImage.classList.toggle('show', !showWhite);
+    whiteImage?.classList.toggle('show', showWhite);
+    maroonImage?.classList.toggle('show', !showWhite);
   }
 
-  /**
-   * Update room code display
-   */
+  // Update room code display
   updateRoomCodeDisplay(roomCode) {
-    const roomCodeElements = this.gameEngine.block.querySelectorAll('.room-code, .code');
+    const roomCodeElements = document.querySelectorAll('.room-code');
     roomCodeElements.forEach((element) => {
       element.textContent = roomCode;
     });
+
+    // Also update room code in game-room-details section (.code class)
+    const codeElement = document.querySelector('#game-room-details .code');
+    if (codeElement) {
+      codeElement.textContent = roomCode;
+    }
   }
 
-  /**
-   * Update game instructions name
-   */
+  // Update game instructions name
   updateGameInstructions() {
-    const gameNameElement = this.gameEngine.block.querySelector('#game-instructions-name');
+    const gameNameElement = document.getElementById('game-instructions-name');
     if (!gameNameElement) return;
 
     const gameName = this.gameEngine.gameType === 'category-game'
       ? 'Category Game'
       : 'Who is in the Dark';
-    
     gameNameElement.textContent = gameName;
   }
 }

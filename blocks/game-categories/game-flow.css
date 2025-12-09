@@ -1,0 +1,2341 @@
+/* ========================================
+   FOOTER VISIBILITY CONTROL
+   ======================================== */
+
+.yellow {
+  color: #f2eb3c;
+  position: relative;
+  display: inline-block;
+}
+
+.yellow::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  width: 12px;
+  height: 12px;
+  background: url("../../../icons/yellow-decorator.svg") no-repeat center top;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.red {
+  color: #bb1f3b;
+  position: relative;
+  display: inline-block;
+}
+
+.red::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  width: 12px;
+  height: 12px;
+  background: url("../../icons/red-decorator.svg") no-repeat center top;
+  background-size: contain;
+  pointer-events: none;
+}
+
+
+
+
+/* ========================================
+   GAME ROOM LAYOUT STYLES
+   ======================================== */
+.game-container {
+  background-color: #bb1f3b;
+}
+
+.game-container > section{
+  padding-top: 2.625rem;
+}
+
+/* Hide all game-room-layout sections by default */
+.game-room-layout {
+  display: none !important;
+}
+
+/* Only show the specific section that has the active class */
+.game-room-layout.active {
+  display: block !important;
+}
+
+/* Ensure no other game-room-layout sections are visible when one is active */
+.game-room-layout:not(.active) {
+  display: none !important;
+}
+
+
+#game-room-creation {
+  display: none;
+}
+
+#game-room-joining {
+  display: none;
+}
+
+#game-room-details {
+  display: none;
+}
+
+/* Hide all question sections by default */
+#category-question-1,
+#category-question-2,
+#dark-question-1,
+#dark-question-2,
+#player-answers,
+#who-is-in-the-dark,
+#clue-answers,
+#reveal-answer,
+#leaderboard {
+  display: none;
+}
+
+/* Active section visibility */
+#game-room-creation.active,
+#game-room-joining.active,
+#game-room-details.active,
+#category-question-1.active,
+#category-question-2.active,
+#dark-question-1.active,
+#dark-question-2.active,
+#player-answers.active,
+#who-is-in-the-dark.active,
+#clue-answers.active,
+#reveal-answer.active,
+#leaderboard.active {
+  display: block !important;
+}
+
+.game-room-layout .title {
+  color: white;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 28px;
+  line-height: 32px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.game-room-layout .sub-title {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.game-room-layout .wrapper {
+  width: 100%;
+  min-height: 40rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.game-room-layout .wrapper .background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: fill;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.game-room-layout .wrapper .bread-container {
+  position: absolute;
+  right: 0;
+  top: -13px;
+  z-index: 1;
+}
+
+.game-room-layout .wrapper .bread-container img {
+  width: 190px;
+}
+
+.game-room-layout .wrapper .content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ========================================
+   GAME ROOM CREATION STYLES
+   ======================================== */
+.creation .code-text {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.creation .code-container {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.creation .room-code {
+  font-weight: 800;
+  font-style: extrabold;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: 10.94px;
+  text-align: center;
+  vertical-align: middle;
+  color: #f37906;
+}
+
+.creation .copy-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.creation .copy-icon img {
+  width: 29px;
+  transition: transform 0.3s ease;
+}
+
+.creation .copy-icon.copied {
+  animation: copyAnimation 0.6s ease;
+}
+
+.creation .copy-icon.copied img {
+  animation: copyIconZoom 0.6s ease;
+}
+
+.creation p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #535252;
+}
+
+.creation .buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.creation .buttons .share-button {
+  cursor: pointer;
+  width: 100%;
+  max-width: 324px;
+  padding: 14px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: white;
+  color: #bb1f3b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 2px solid #bb1f3b;
+}
+
+.creation .buttons .share-button .arrow-right {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.creation .buttons .start-button {
+  cursor: pointer;
+  width: 100%;
+  max-width: 324px;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+}
+
+/* ========================================
+   GAME ROOM JOINING STYLES
+   ======================================== */
+
+.joining h3 {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 0.5rem;
+}
+
+.joining p {
+  font-weight: 400;
+  font-style: regular;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #575757;
+  margin-bottom: 1rem;
+}
+
+.joining .input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.joining input {
+  width: 294px;
+  height: 53px;
+  opacity: 1;
+  border-radius: 7px;
+  border-width: 1px;
+  border: 1px solid #b8b8b8;
+  outline: none;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: 10px;
+  text-align: center;
+  vertical-align: middle;
+  transition: border-color 0.3s ease;
+}
+
+.joining .error-message {
+  color: #bb1f3b;
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 3.6rem;
+  margin-top: 0.5rem;
+  min-height: 20px;
+}
+
+@media (width >= 768px) {
+  .joining .error-message {
+    margin-left: 7.8rem;
+  }
+}
+
+.joining .buttons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.joining .buttons .join-button {
+  cursor: pointer;
+  width: 100%;
+  max-width: 324px;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+}
+
+/* media query for tablet */
+@media (width <= 768px) {
+  .joining input {
+    width: 100%;
+    max-width: 294px;
+    font-size: 24px;
+    letter-spacing: 8px;
+  }
+}
+
+/* ========================================
+   GAME ROOM DETAILS STYLES
+   ======================================== */
+.details .code-text {
+  margin-top: 4.5rem;
+  font-weight: 500;
+  font-style: medium;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #535252;
+  margin-bottom: 0.5rem;
+}
+
+.details .code {
+  font-weight: 700;
+  font-style: bold;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: 10px;
+  text-align: center;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.details .actions {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.details .actions .copy,
+.details .actions .share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+.details .actions .copy-icon,
+.details .actions .share-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f37906;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.details .actions .copy-icon img,
+.details .actions .share-icon img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.details .actions .copy-icon.copied {
+  animation: copyAnimation 0.6s ease;
+}
+
+.details .actions .copy-icon.copied img {
+  animation: copyIconZoom 0.6s ease;
+}
+
+.details .separator {
+  width: 1px;
+  height: 70px;
+  background-color: #e7e7e7;
+  align-self: center;
+}
+
+.details .actions span {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.details .players-in-lobby {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 0.2rem;
+}
+
+.details .players-in-lobby .red {
+  color: #bb1f3b;
+}
+
+.details .players-gathered {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  color: #535252;
+}
+
+.details .players-cards {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.details .players-cards .player-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.details .players-cards .player-card .avatar {
+  width: 77px;
+  height: 77px;
+  border-radius: 50%;
+}
+
+.details .players-cards .player-card .avatar img {
+  width: 77px;
+  height: 77px;
+  object-fit: fill;
+  border-radius: 50%;
+  padding: 2px;
+  border: 2px solid #f37906;
+}
+
+.details .button {
+  display: flex;
+  justify-content: center;
+}
+
+.details .button .start-game-button {
+  cursor: pointer;
+  width: 100%;
+  max-width: 324px;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+}
+
+/* ========================================
+   CHOOSE GAME CATEGORY STYLES
+   ======================================== */
+.game-category .categories-cards {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.game-category .categories-cards .category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  background-color: #fef5eb;
+  padding: 16px;
+  width: 162px;
+  height: 170px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.game-category .categories-cards .category-card .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 63.33px;
+  height: 63.33px;
+  background-color: #f37906;
+  border-radius: 50%;
+}
+
+.game-category .categories-cards .category-card .icon img {
+  width: 25px;
+  height: 25px;
+}
+
+.game-category .categories-cards .category-card .text {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #f37906;
+}
+
+.game-category .categories-cards .category-card:hover {
+  box-shadow: 0 4px 16px rgb(0 0 0 / 10%);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.game-category .categories-cards .category-card.selected {
+  background-color: #f37906;
+  transform: translateY(-2px);
+}
+
+.game-category .categories-cards .category-card.selected .icon {
+  background-color: white;
+}
+
+.game-category .categories-cards .category-card.selected .text {
+  color: white;
+}
+
+.game-category .button {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.game-category .button .lets-start-button {
+  cursor: pointer;
+  width: 100%;
+  max-width: 324px;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.game-category .button .lets-start-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   CLUE IS READY STYLES
+   ======================================== */
+.clue-ready .image-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.clue-ready .image-container .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 235.28px;
+  height: 253.72px;
+  border: 2px dashed #f37906;
+  border-radius: 22.5px;
+  transform: rotate(-6.32deg);
+  background-color: #fef5eb;
+  box-shadow: 0 6.66px 15.23px 0 rgb(0 0 0 / 5%),
+    0 27.61px 27.61px 0 rgb(0 0 0 / 4%),
+    0 61.88px 37.13px 0 rgb(0 0 0 / 3%),
+    0 109.49px 43.8px 0 rgb(0 0 0 / 1%),
+    0 171.37px 47.6px 0 rgb(0 0 0 / 0%);
+}
+
+.clue-ready .image-container .image img {
+  width: 127.37px;
+  height: auto;
+}
+
+.clue-ready .clue-text {
+  margin-top: 2rem;
+  color: #1f1f1f;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.clue-ready .button {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.clue-ready .button .ready-button {
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 324px;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+}
+
+/* ========================================
+   YOU'RE IN THE DARK STYLES
+   ======================================== */
+.youre-in-the-dark .image-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.youre-in-the-dark .image-container .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.youre-in-the-dark .image-container .image img {
+  width: 275.01px;
+  height: auto;
+}
+
+.youre-in-the-dark .dark-text {
+  margin-top: 1rem;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.youre-in-the-dark .button {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.youre-in-the-dark .button .dark-ready-button {
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 324px;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+}
+
+/* ========================================
+   GAME QUESTION STYLES
+   ======================================== */
+main:has(.game-question.active) {
+  background-color: #bb1f3b;
+  min-height: 100vh;
+}
+
+.question-timer {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.question-timer .counter-down {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-weight: 400;
+  font-style: regular;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: white;
+}
+
+.question-timer .timer-bar {
+  width: 100%;
+  height: 8px;
+  background-color: rgb(255 255 255 / 30%);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.question-timer .timer-bar .timer-fill {
+  width: 100%;
+  height: 100%;
+  background-color: #f2eb3c;
+  border-radius: 10px;
+  transition: width 1s linear, background-color 0.3s ease;
+}
+
+.game-question .question-category {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.game-question .question-category .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 93px;
+  height: 36px;
+  padding: 0 12px;
+  left: 125px;
+  border-radius: 18px;
+  background: rgb(255 255 255 / 20%);
+  gap: 0.5rem;
+}
+
+.game-question .question-category .container span {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.game-question .question-category .container img {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes countdown {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+.game-question .note {
+  padding: 2rem;
+}
+
+.game-question .note .note-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #f2eb3c;
+  border-radius: 24px;
+  padding: 1rem;
+}
+
+.game-question .note .note-container img {
+  width: 40px;
+  height: 40px;
+}
+
+.game-question .note .note-container .text {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.game-question .question-content {
+  margin-top: 2rem;
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.game-question .question-content .question-icon {
+  width: 61px;
+  height: 61px;
+  object-fit: contain;
+}
+
+.game-question .question-content .question-text {
+  font-weight: 700;
+  font-style: bold;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+
+  /* color: white; */
+}
+
+.game-question .question-input {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.game-question .question-input .input-label {
+  font-weight: 400;
+  font-style: regular;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #364153;
+}
+
+.game-question .question-input input {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 49px;
+  opacity: 1;
+  border-radius: 7px;
+  border-width: 1px;
+  border: 1px solid #b8b8b8;
+  outline: none;
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.game-question .question-input .char-count {
+  font-weight: 400;
+  font-style: regular;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0%;
+  text-align: right;
+  vertical-align: middle;
+  color: #b8b8b8;
+  margin-top: 0.5rem;
+}
+
+.game-question .button {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.game-question .button .next-button,
+.game-question .button .save-next-button {
+  cursor: pointer;
+  width: 186.46px;
+  padding: 13px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+}
+
+.game-question .suquad-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.game-question .suquad-status .background img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.game-question .suquad-status .content {
+  position: relative;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.game-question .suquad-status .content .title {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.game-question .suquad-status .content .sub-title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  color: #535252;
+  text-align: center;
+}
+
+.game-question .suquad-status .content .suquad-container {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.game-question .suquad-status .content .suquad-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background-color: #fef5eb;
+  width: 100%;
+  padding: 16px;
+  opacity: 1;
+  border-radius: 15px;
+}
+
+.game-question .suquad-status .content .suquad-card .user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.game-question
+  .suquad-status
+  .content
+  .suquad-card
+  .user-info
+  .suquad-card-icon
+  img {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+}
+
+.game-question
+  .suquad-status
+  .content
+  .suquad-card
+  .user-info
+  .suquad-card-name {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  color: #1e2939;
+}
+
+.game-question .suquad-status .content .suquad-card .suquad-card-status {
+  font-weight: 400;
+  font-style: regular;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  color: #1e2939;
+}
+
+/* ========================================
+   PLAYER ANSWERS STYLES
+   ======================================== */
+
+.answers-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.game-question .suquad-status .title {
+  font-weight: 700;
+  font-style: bold;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px;
+}
+
+.answer-card {
+  width: 136px;
+  background-color: #fff5ed;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.answer-card .player-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.answer-card .player-info .avatar {
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+}
+
+.answer-card .player-info .avatar img {
+  width: 29px;
+  height: 29px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 0.7px solid #f37906;
+  padding: 1px;
+}
+
+.answer-card .player-info .player-name {
+  font-weight: 400;
+  font-style: regular;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.answer-card .player-answer {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.answers .button {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+}
+
+.answers .spot-dark-button {
+  width: 100%;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* ========================================
+   WHO IS IN THE DARK STYLES
+   ======================================== */
+.who-is-in-the-dark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.who-is-in-the-dark .mystery-players {
+  width: 324;
+  height: 436;
+  opacity: 1;
+  border-radius: 24px;
+  gap: 28px;
+  padding: 28px;
+  background-color: #fff;
+}
+
+.who-is-in-the-dark .mystery-players h3 {
+  font-weight: 600;
+  font-style: semibold;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  width: 239px;
+}
+
+.who-is-in-the-dark .mystery-players .players {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.who-is-in-the-dark .mystery-players .players .player {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 263px;
+  border-radius: 13px;
+  border-width: 1.5px;
+  border: 1.5px solid #b8b8b8;
+  padding: 16px 24px;
+}
+
+.who-is-in-the-dark .mystery-players .players .player .name {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.who-is-in-the-dark .button {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.who-is-in-the-dark .button .submit-button {
+  width: 100%;
+  max-width: 324px;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  background-color: #bb1f3b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+/* ========================================
+   GAME ROOM RESULT LAYOUT STYLES
+   ======================================== */
+main:has(.game-room-result-layout.active) {
+  background-color: #fef5eb;
+}
+
+.game-room-result-layout {
+  display: none !important;
+}
+
+.game-room-result-layout img.curve {
+  width: 100%;
+  max-width: 33.75rem;
+  height: 20rem;
+  position: absolute;
+  top: -2rem;
+
+  /* display: none !important; */
+}
+
+.game-room-result-layout.active {
+  display: block !important;
+}
+
+.game-room-result-layout .wrapper {
+  padding-top: 3rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-room-result-layout .wrapper .title {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.game-room-result-layout .wrapper .title .yellow {
+  color: #f2eb3c;
+}
+
+.game-room-result-layout .wrapper .sub-title {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #fff;
+}
+
+/* ========================================
+   REVEAL ANSWER STYLES
+   ======================================== */
+.reveal-answer,
+.winner {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.reveal-answer .secrect-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #fff;
+  width: 343px;
+  height: 172px;
+  border-radius: 24px;
+  box-shadow: 1px 2px 4px 0 #0000000a, 2px 7px 8px 0 #00000008,
+    5px 17px 11px 0 #00000005, 9px 30px 13px 0 #00000003,
+    15px 47px 14px 0 #0000;
+}
+
+.winner .secrect-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  width: 343px;
+  height: 172px;
+  border-radius: 24px;
+  box-shadow: 1px 2px 4px 0 #0000000a, 2px 7px 8px 0 #00000008,
+    5px 17px 11px 0 #00000005, 9px 30px 13px 0 #00000003,
+    15px 47px 14px 0 #0000;
+}
+
+.reveal-answer .secrect-card .secret-word-text,
+.winner .secrect-card .secret-word-text {
+  font-weight: 400;
+  font-style: regular;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #1e2939;
+}
+
+.reveal-answer .secrect-card img {
+  width: 30.45px;
+  height: 34.83px;
+  object-fit: cover;
+}
+
+.winner .secrect-card img {
+  width: 107px;
+  height: 107px;
+  margin-top: -3.5rem;
+}
+
+.reveal-answer .secrect-card .secret-word {
+  font-weight: 700;
+  font-style: bold;
+  font-size: 36px;
+  line-height: 32px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.winner .secrect-card .secret-word {
+  font-size: 28px;
+}
+
+.reveal-answer .player-in-the-dark,
+.winner .player-in-the-dark {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background-color: #bb2038;
+  width: 343px;
+  height: 160.15px;
+  padding: 16px;
+  position: relative;
+}
+
+.reveal-answer .player-in-the-dark .top-left-corner,
+.winner .player-in-the-dark .top-left-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.reveal-answer .player-in-the-dark .bottom-right-corner,
+.winner .player-in-the-dark .bottom-right-corner {
+  position: absolute;
+  bottom: -6.9px;
+  right: 0;
+}
+
+.reveal-answer .player-in-the-dark .player-avatar img,
+.winner .player-in-the-dark .player-avatar img {
+  width: 50px;
+  height: 50px;
+}
+
+.reveal-answer .player-in-the-dark .text,
+.winner .player-in-the-dark .text {
+  font-weight: 400;
+  font-style: regular;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.reveal-answer .player-in-the-dark .text .yellow,
+.winner .player-in-the-dark .text .yellow {
+  color: #f2eb3c;
+  font-weight: 700;
+}
+
+.reveal-answer .voting-results,
+.winner .voting-results {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal-answer .voting-results .title,
+.winner .voting-results .title {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #1f1f1f;
+}
+
+.reveal-answer .voting-results .title .red,
+.winner .voting-results .title .red {
+  color: #bb2038;
+}
+
+.reveal-answer .voting-results .sub-title,
+.winner .voting-results .sub-title {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #535252;
+}
+
+.reveal-answer .voting-results .results-table,
+.winner .voting-results .results-table {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 343px;
+  gap: 1rem;
+  border-radius: 24px;
+  padding: 16px 0;
+  background-color: #fff;
+}
+
+.reveal-answer .voting-results .results-table .result-header,
+.winner .voting-results .results-table .result-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 32px;
+  font-weight: 600;
+  font-style: semibold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.reveal-answer .voting-results .results-table .result-item,
+.winner .voting-results .results-table .result-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 13px 32px;
+  font-weight: 400;
+  font-style: regular;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.reveal-answer .voting-results .results-table .result-item .cell:last-child,
+.winner .voting-results .results-table .result-item .cell:last-child {
+  padding-right: 1rem;
+}
+
+.reveal-answer .voting-results .results-table .result-item.active,
+.winner .voting-results .results-table .result-item.active {
+  background-color: #ed710a;
+  color: #fff;
+}
+
+.reveal-answer .view-leadboard,
+.winner .view-leadboard {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background-color: #f2eb3c;
+  width: 343px;
+  height: 160.15px;
+  padding: 16px;
+  position: relative;
+}
+
+.reveal-answer .view-leadboard .top-left-corner,
+.winner .view-leadboard .top-left-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.reveal-answer .view-leadboard .bottom-right-corner,
+.winner .view-leadboard .bottom-right-corner {
+  position: absolute;
+  bottom: -6.9px;
+  right: 0;
+}
+
+.reveal-answer .view-leadboard .text,
+.winner .view-leadboard .text {
+  font-weight: 700;
+  font-style: bold;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.reveal-answer .view-leadboard .button,
+.winner .view-leadboard .button {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.reveal-answer .view-leadboard .button .view-leadboard-button,
+.winner .view-leadboard .button .view-leadboard-button {
+  cursor: pointer;
+  width: 100%;
+  max-width: 173px;
+  padding: 16px 0;
+  border-radius: 100px;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 12.81px;
+  line-height: 16.02px;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #bb2038;
+  border: none;
+}
+
+.reveal-answer .buttons,
+.winner .buttons {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+}
+
+.reveal-answer .buttons button,
+.winner .buttons button {
+  cursor: pointer;
+  width: 100%;
+  max-width: 151px;
+  padding: 16px 0;
+  border-radius: 100px;
+  border: none;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.reveal-answer .buttons .new-game-button,
+.winner .buttons .new-game-button {
+  background-color: transparent;
+  color: #bb2038;
+  border: 2px solid #bb2038;
+}
+
+.reveal-answer .buttons .play-more-button,
+.winner .buttons .play-more-button {
+  background-color: #bb2038;
+  color: #fff;
+}
+
+/* ========================================
+   LEADERBOARD STYLES
+   ======================================== */
+.leaderboard {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.leaderboard .note-card {
+  display: flex;
+  width: 343px;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #f2eb3c;
+  border-radius: 24px;
+  padding: 12px;
+  box-shadow: 1px 2px 4px 0 #0000000a, 2px 7px 8px 0 #00000008,
+    5px 17px 11px 0 #00000005, 9px 30px 13px 0 #00000003,
+    15px 47px 14px 0 #0000;
+}
+
+.leaderboard .note-card .number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
+  text-align: center;
+  background-color: #bb1f3b;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.leaderboard .note-card .text {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.leaderboard .rankings {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 21.438rem;
+  gap: 1rem;
+  background-color: #fff;
+  border-radius: 24px;
+  box-shadow: 2px 2px 6px 0 #0000000a, 9px 6px 11px 0 #00000008,
+    21px 14px 15px 0 #00000005, 37px 24px 18px 0 #00000003,
+    57px 38px 19px 0 #0000;
+}
+
+.leaderboard .rankings .rankings-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.leaderboard .rankings .rankings-table .rankings-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+}
+
+.leaderboard .rankings .rankings-table .rankings-header .cell {
+  font-weight: 700;
+  font-style: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.leaderboard .rankings .rankings-table .rankings-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.leaderboard .rankings .rankings-table .rankings-item.active {
+  background-color: #ed710a;
+  color: #fff;
+}
+
+.leaderboard .rankings .rankings-table .rankings-item:last-child {
+  margin-bottom: 24px;
+}
+
+.leaderboard .rankings .rankings-table .rankings-item:hover {
+  background-color: #f6f6f6;
+  color: #1f1f1f;
+  cursor: pointer;
+}
+
+.leaderboard .rankings .rankings-table .rankings-item .cell {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.leaderboard .rankings .rankings-table .rankings-item .cell:last-child {
+  padding-right: 1rem;
+}
+
+.leaderboard .rankings .rankings-table .rankings-item .cell.user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.leaderboard
+  .rankings
+  .rankings-table
+  .rankings-item
+  .cell.user-info
+  .avatar
+  img {
+  width: 1.813rem;
+  height: 1.813rem;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 1.5px;
+  border: 0.7px solid #f37906;
+}
+
+.leaderboard .button {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.leaderboard .button .load-more-button {
+  cursor: pointer;
+  width: 100%;
+  padding: 12px 24px;
+  border-radius: 80.09px;
+  border: none;
+  background-color: #bb1f3b;
+  font-weight: 700;
+  font-style: bold;
+  font-size: 12.81px;
+  line-height: 16.02px;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Podium Styles */
+.podium-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  perspective: 1200px;
+  perspective-origin: center bottom;
+}
+
+.podium {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  max-width: 600px;
+  width: 100%;
+  transform-style: preserve-3d;
+}
+
+.podium-stage {
+  width: 7.375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.player-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.profile-image img {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.05px solid #f37906;
+  padding: 2px;
+}
+
+.player-name {
+  font-weight: 500;
+  font-style: medium;
+  font-size: 9px;
+  line-height: 14.4px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  color: #1f1f1f;
+}
+
+.crown-icon {
+  margin-bottom: -1.5rem;
+}
+
+.podium-block {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.podium-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  transform: rotateX(90deg) translateZ(20px);
+  transform-origin: bottom;
+  opacity: 0.8;
+}
+
+.podium-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  transform: rotateY(90deg) translateZ(20px);
+  transform-origin: left;
+  opacity: 0.6;
+}
+
+.second-place {
+  margin-right: -41px;
+}
+
+.second-place .player-profile {
+  margin-right: 20px;
+}
+
+.third-place {
+  margin-left: -42px;
+}
+
+.third-place .player-profile {
+  margin-left: 20px;
+}
+
+.podium-number {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 3px 6px rgb(0 0 0 / 50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(10px);
+  z-index: 10;
+}
+
+/* First Place - Orange (Center, Tallest) */
+.first-place .podium-block {
+  height: 8.125rem;
+  background: url("../../icons/position1.svg") no-repeat center center;
+  background-size: contain;
+  z-index: 1;
+}
+
+/* Second Place - Yellow (Left, Medium) */
+.second-place .podium-block {
+  height: 6.563rem;
+  background: url("../../icons/position2.svg") no-repeat center center;
+  background-size: contain;
+}
+
+/* Third Place - Yellow (Right, Shortest) */
+.third-place .podium-block {
+  height: 5.75rem;
+  background: url("../../icons/position3.svg") no-repeat center center;
+  background-size: contain;
+}
+
+.blue-background {
+  background: white;
+  height: 10.75rem;
+  width: 100%;
+}
+
+/* ========================================
+   CLUE ANSWERS STYLES
+   ======================================== */
+#clue-answers .timer-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#clue-answers .timer-header .number {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #fff;
+}
+
+#clue-answers .timer-header .counter-down {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  background-color: #fff;
+  color: #ed710a;
+  padding: 4px 8px;
+  border-radius: 6.25rem;
+}
+
+#clue-answers .timer-bar {
+  width: 100%;
+  height: 8px;
+  background-color: rgb(255 255 255 / 30%);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#clue-answers .timer-bar .timer-fill {
+  width: 100%;
+  height: 100%;
+  background-color: #f2eb3c;
+  border-radius: 10px;
+  transition: width 1s linear, background-color 0.3s ease;
+}
+
+.clue-answers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.clue-answers .clue-answers-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #fff;
+  width: 20.25rem;
+  opacity: 1;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 1px 2px 4px 0 #0000000a, 2px 7px 8px 0 #00000008,
+    5px 17px 11px 0 #00000005, 9px 30px 13px 0 #00000003,
+    15px 47px 14px 0 #0000;
+}
+
+.clue-answers .clue-answers-container .title {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #1e2939;
+}
+
+.clue-answers .clue-answers-container .clue-answer-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 16px;
+  border: 1.5px solid #b8b8b8;
+  border-radius: 13px;
+}
+
+.clue-answers .clue-answers-container .clue-answer-card .anwer {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  color: #1e2939;
+}
+
+.clue-answers .clue-answers-container .button {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.clue-answers .clue-answers-container .button button {
+  width: 11.625rem;
+  padding: 16px 0;
+  border-radius: 6.25rem;
+  background-color: #bb1f3b;
+  color: white;
+  font-weight: 700;
+  font-size: 13.14px;
+  line-height: 16.43px;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  letter-spacing: 0;
+}
+
+.clue-answers .navigation-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.clue-answers .navigation-buttons button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.clue-answers .navigation-buttons button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.clue-answers .navigation-buttons button.question-previous-button {
+  text-align: start;
+}
+
+.clue-answers .navigation-buttons button.question-next-button {
+  text-align: end;
+}
+
+/* Copy icon animations */
+@keyframes copyAnimation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes copyIconZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+
+   --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 33.75rem;
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  width: 100%;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
+  position: relative;
+}
+
+.img-container {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background-color: rgb(243 121 6 / 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content h3 {
+  color: #F37906;
+  font-size: 28px;
+  margin-bottom: 0;
+}
+
+.popup-message {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.popup-message .highlighted-name {
+  font-weight: 500;
+  color: #F37906;
+}
+
+.popup-button {
+  background: #ff9f0a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.popup-button:hover {
+  background: #ffb13e;
+}
+
+.hidden {
+  display: none;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 30px 40px;
+  text-align: center;
+  width: 100%;
+
+  /* max-width: 375px; */
+  position: absolute;
+  bottom: 0;
+  border-radius: 20px 20px 0 0;
+}
+
+.popup-content h3 {
+  /* margin-bottom: 10px; */
+}
+
+.popup-content button {
+    margin-top: 10px;
+    padding: 16px 60px;
+    background: #bb1f3b;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.non-host-waiting-msg {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f1f1f;
+  line-height: 1.2;
+  text-align: center;
+}

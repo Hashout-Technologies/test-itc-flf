@@ -1,184 +1,133 @@
-/**
- * Game Timer Manager
- * Handles countdown timers for questions and sections
- */
-/* eslint-disable */
-import { QUESTION_TIMER_DURATION, TIMER_DURATION, GAME_SECTIONS } from './game-config.js';
+// /**
+//  * Game Timer Manager
+//  * Handles countdown timers for questions and sections
+//  */
+
+import { TIMER_DURATION } from './game-config.js';
 
 export class GameTimerManager {
   constructor(gameEngine) {
     this.gameEngine = gameEngine;
-    this.timer = null;
     this.timerInterval = null;
-    this.remainingTime = 0;
+    this.timerDuration = TIMER_DURATION;
+    this.timerRemaining = TIMER_DURATION;
   }
 
-  /**
-   * Start timer for current section
-   */
   startTimerForSection() {
-    const section = this.gameEngine.sectionManager?.getCurrentSection();
-    if (!section) return;
-
-    // Sections that need timers
-    const timedSections = [
-      GAME_SECTIONS.CATEGORY_QUESTION_1,
-      GAME_SECTIONS.CATEGORY_QUESTION_2,
-      GAME_SECTIONS.DARK_QUESTION_1,
-      GAME_SECTIONS.DARK_QUESTION_2,
-      GAME_SECTIONS.CLUE_ANSWERS
-    ];
-
-    if (timedSections.includes(section)) {
-      const duration = this.getTimerDuration(section);
-      this.startTimer(duration);
-    }
+    this.startTimer(TIMER_DURATION);
   }
 
-  /**
-   * Get timer duration for section
-   */
-  getTimerDuration(section) {
-    switch (section) {
-      case GAME_SECTIONS.CLUE_ANSWERS:
-        return TIMER_DURATION;
-      case GAME_SECTIONS.CATEGORY_QUESTION_1:
-      case GAME_SECTIONS.CATEGORY_QUESTION_2:
-      case GAME_SECTIONS.DARK_QUESTION_1:
-      case GAME_SECTIONS.DARK_QUESTION_2:
-        return QUESTION_TIMER_DURATION;
-      default:
-        return 30;
-    }
-  }
+  startTimer(duration = TIMER_DURATION) {
+    this.timerDuration = duration;
+    this.timerRemaining = duration;
+    this.stopTimer();
+    this.updateTimerDisplay();
 
-  /**
-   * Start a countdown timer
-   */
-  startTimer(duration) {
-    this.stopTimer(); // Clear any existing timer
-
-    this.remainingTime = duration;
-    const timerFill = this.gameEngine.block.querySelector('.timer-fill');
-    const counterDisplay = this.gameEngine.block.querySelector('.counter-down span');
-
-    if (!timerFill || !counterDisplay) return;
-
-    // Initial display
-    this.updateTimerDisplay(duration, duration, timerFill, counterDisplay);
-
-    // Start countdown
     this.timerInterval = setInterval(() => {
-      this.remainingTime--;
+      this.timerRemaining--;
+      this.updateTimerDisplay();
 
-      this.updateTimerDisplay(this.remainingTime, duration, timerFill, counterDisplay);
-
-      // Timer finished
-      if (this.remainingTime <= 0) {
+      if (this.timerRemaining <= 0) {
         this.stopTimer();
-        this.handleTimeout();
-      }
-
-      // Warning state (last 10 seconds)
-      if (this.remainingTime <= 10) {
-        timerFill?.classList.add('warning');
+        this.handleTimerComplete();
       }
     }, 1000);
   }
 
-  /**
-   * Update timer display
-   */
-  updateTimerDisplay(remaining, total, timerFill, counterDisplay) {
-    if (counterDisplay) {
-      counterDisplay.textContent = `${remaining} sec`;
-    }
-
-    if (timerFill) {
-      const percentage = (remaining / total) * 100;
-      timerFill.style.width = `${percentage}%`;
-    }
-  }
-
-  /**
-   * Handle timer timeout
-   */
-  handleTimeout() {
-    console.log('⏰ Timer expired');
-
-    // Auto-submit if in question section
-    const section = this.gameEngine.sectionManager?.getCurrentSection();
-    const questionSections = [
-      GAME_SECTIONS.CATEGORY_QUESTION_1,
-      GAME_SECTIONS.CATEGORY_QUESTION_2,
-      GAME_SECTIONS.DARK_QUESTION_1,
-      GAME_SECTIONS.DARK_QUESTION_2
-    ];
-
-    if (questionSections.includes(section)) {
-      // Show "time's up" notification
-      this.showTimeoutNotification();
-      
-      // Auto-advance after delay
-      setTimeout(() => {
-        this.gameEngine.handleQuestionTimeout();
-      }, 2000);
-    }
-  }
-
-  /**
-   * Show timeout notification
-   */
-  showTimeoutNotification() {
-    // You can customize this to show a toast/modal
-    const notification = this.gameEngine.block.querySelector('.timeout-notification');
-    if (notification) {
-      notification.classList.add('show');
-      setTimeout(() => {
-        notification.classList.remove('show');
-      }, 2000);
-    }
-  }
-
-  /**
-   * Stop the timer
-   */
   stopTimer() {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
       this.timerInterval = null;
     }
-
-    // Reset warning state
-    const timerFill = this.gameEngine.block.querySelector('.timer-fill');
-    if (timerFill) {
-      timerFill.classList.remove('warning');
-    }
   }
 
-  /**
-   * Pause the timer
-   */
-  pauseTimer() {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-    }
+  updateTimerDisplay() {
+    const timerElements = document.querySelectorAll('.counter-down');
+    const progressBars = document.querySelectorAll('.timer-fill');
+
+    timerElements.forEach((element) => {
+      const isClueAnswers = element.closest('#clue-answers');
+      element.innerHTML = this.formatTimerText(isClueAnswers);
+    });
+
+    progressBars.forEach((bar) => {
+      const percentage = (this.timerRemaining / this.timerDuration) * 100;
+      bar.style.width = `${percentage}%`;
+      bar.style.backgroundColor = this.getTimerColor(percentage);
+    });
   }
 
-  /**
-   * Resume the timer
-   */
-  resumeTimer() {
-    if (this.remainingTime > 0 && !this.timerInterval) {
-      const duration = this.remainingTime;
-      this.startTimer(duration);
+  formatTimerText(isClueAnswers) {
+    const minutes = Math.floor(this.timerRemaining / 60);
+    const seconds = this.timerRemaining % 60;
+    const secFormatted = seconds.toString().padStart(2, '0');
+    const icon = isClueAnswers ? './icons/time-or.svg' : './icons/time.svg';
+
+    if (isClueAnswers) {
+      return `<img src="${icon}" alt="Timer Icon" /> ${minutes}:${secFormatted}`;
     }
+
+    if (this.timerRemaining >= 60) {
+      return `<img src="${icon}" alt="Timer Icon" /> ${minutes}:${secFormatted}`;
+    }
+
+    return `<img src="${icon}" alt="Timer Icon" /> ${this.timerRemaining} sec`;
   }
 
-  /**
-   * Get remaining time
-   */
-  getRemainingTime() {
-    return this.remainingTime;
+  getTimerColor(percentage) {
+    if (percentage <= 20) return '#f44336';
+    if (percentage <= 40) return '#ff9800';
+    return '#f2eb3c';
+  }
+
+  handleTimerComplete() {
+    const socket = this.gameEngine.socketHandler.getSocket();
+    const currentPlayerId = socket?.id;
+    const player = this.gameEngine.players?.find((p) => p.id === currentPlayerId);
+
+    const section = this.gameEngine.currentSection;
+
+    // Sections that REQUIRE an answer
+    const answerRequiredSections = [
+      'category-question-1',
+      'category-question-2',
+      'dark-question-1',
+      'dark-question-2',
+    ];
+
+    // If current section is a question that requires answer:
+    if (answerRequiredSections.includes(section)) {
+      // Check if user submitted an answer for THIS question
+      const hasSubmitted = player?.answers?.some(
+        (a) => a.section === section,
+      ) || false;
+
+      if (!hasSubmitted) {
+        console.log('Player did not submit in time. Showing Not Qualified popup.');
+        const me = this.gameEngine.players?.find((p) => p.id === currentPlayerId);
+        if (me) me.notQualified = true;
+        socket.emit('mark_not_qualified', {
+          roomCode: this.gameEngine.roomCode,
+          playerId: currentPlayerId,
+        });
+        this.gameEngine.showNotQualifiedPopup();
+
+        return;
+      }
+    }
+
+    // Normal transitions for other sections
+    const transitions = {
+      'category-question-1': 'category-question-2',
+      'category-question-2': 'player-answers',
+      'dark-question-1': 'dark-question-2',
+      'dark-question-2': 'player-answers',
+      'clue-answers': 'winner',
+    };
+
+    const nextSection = transitions[this.gameEngine.currentSection];
+    if (nextSection) {
+      this.gameEngine.sectionManager.showSection(nextSection);
+    }
   }
 }

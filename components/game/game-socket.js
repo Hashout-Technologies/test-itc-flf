@@ -1,279 +1,224 @@
+/* eslint-disable consistent-return */
 /**
  * Game Socket Handler
  * Manages all Socket.io communication for real-time multiplayer
  */
-/* eslint-disable */
-import { SOCKET_CONFIG } from './game-config.js';
-
 export class GameSocketHandler {
   constructor(gameEngine) {
     this.gameEngine = gameEngine;
-    this.socket = null;
-    this.isConnected = false;
+    this.socket = window.socket;
   }
 
-  /**
-   * Setup socket connection
-   */
   setup() {
-    // Check if socket.io is available
-    if (typeof io === 'undefined') {
-      console.warn('Socket.io not loaded. Running in offline mode.');
-      return null;
+    this.socket = window.socket;
+
+    if (!this.socket) {
+      console.error(
+        'Socket not found. Make sure socket.io is initialized before game-engine.js',
+      );
+      return;
     }
 
-    try {
-      // Use existing socket or create new one
-      this.socket = window.socket || io(SOCKET_CONFIG.url, SOCKET_CONFIG.options);
-      window.socket = this.socket;
-
-      this.setupListeners();
-      this.setupConnectionListeners();
-      
-      return this.socket;
-    } catch (error) {
-      console.error('Failed to setup socket:', error);
-      return null;
-    }
+    this.setupListeners();
+    return this.socket;
   }
 
-  /**
-   * Setup connection event listeners
-   */
-  setupConnectionListeners() {
-    if (!this.socket) return;
-
-    this.socket.on('connect', () => {
-      console.log('✅ Socket connected:', this.socket.id);
-      this.isConnected = true;
-    });
-
-    this.socket.on('disconnect', (reason) => {
-      console.log('❌ Socket disconnected:', reason);
-      this.isConnected = false;
-      
-      if (reason === 'io server disconnect') {
-        // Reconnect manually if server disconnected
-        this.socket.connect();
-      }
-    });
-
-    this.socket.on('connect_error', (error) => {
-      console.error('Socket connection error:', error);
-      this.isConnected = false;
-    });
-
-    this.socket.on('reconnect', (attemptNumber) => {
-      console.log('🔄 Socket reconnected after', attemptNumber, 'attempts');
-      this.isConnected = true;
-    });
-
-    this.socket.on('reconnect_attempt', (attemptNumber) => {
-      console.log('Reconnection attempt:', attemptNumber);
-    });
-
-    this.socket.on('reconnect_error', (error) => {
-      console.error('Reconnection error:', error);
-    });
-
-    this.socket.on('reconnect_failed', () => {
-      console.error('Failed to reconnect after maximum attempts');
-      this.gameEngine.handleErrorMessage('Connection lost. Please refresh the page.');
-    });
-  }
-
-  /**
-   * Setup game event listeners
-   */
   setupListeners() {
-    if (!this.socket) return;
-
-    // Room created event
     this.socket.on('room_created', (data) => {
-      console.log('🎮 Room created:', data);
       this.gameEngine.handleRoomCreated(data);
     });
 
-    // Room update event (players join/leave)
+    // Listen for room_update event (when someone joins/leaves)
     this.socket.on('room_update', (players) => {
-      console.log('👥 Room update:', players);
+      console.log('room_update', players);
       this.gameEngine.handleRoomUpdate(players);
     });
 
-    // Error message event
+    // Listen for error_message event
     this.socket.on('error_message', (message) => {
-      console.error('❌ Error:', message);
       this.gameEngine.handleErrorMessage(message);
     });
 
-    // Category selected event
+    // Listen for category_selected event (when host selects category)
     this.socket.on('category_selected', (data) => {
-      console.log('📂 Category selected:', data);
       this.gameEngine.handleCategorySelected(data);
     });
 
-    // Clue and dark player selected event
+    // Listen for clue_and_dark_player_selected event (when host selects clue and dark player)
     this.socket.on('clue_and_dark_player_selected', (data) => {
-      console.log('🎯 Clue and dark player:', data);
       this.gameEngine.handleClueAndDarkPlayerSelected(data);
     });
 
-    // Navigate section event
+    // Listen for navigate_section event (when host navigates to next section)
     this.socket.on('navigate_section', (data) => {
-      console.log('🔀 Navigate to:', data.sectionId);
       this.gameEngine.handleNavigateSection(data);
     });
 
-    // Points update event
+    // Listen for points_update event (when points are calculated)
     this.socket.on('points_update', (data) => {
-      console.log('📊 Points updated:', data);
       this.gameEngine.handlePointsUpdate(data);
     });
 
-    // Votes update event
+    // Listen for votes_update event (when someone votes in "Who is in the Dark")
     this.socket.on('votes_update', (data) => {
-      console.log('🗳️ Votes updated:', data);
-      this.gameEngine.handleVotesUpdate(data);
+      console.log('Votes updated:', data.players);
+
+      // Update reveal results with latest vote data
+      this.gameEngine.roomManager.updateRevealResults(
+        this.gameEngine.playerPoints || {},
+        data.players,
+      );
     });
 
-    // Answers reset event
+    // Listen for answers_reset event (when answers are reset for new round)
     this.socket.on('answers_reset', () => {
-      console.log('🔄 Answers reset');
       this.gameEngine.handleAnswersReset();
     });
 
-    // Squad status update (answers submitted)
-    this.socket.on('squad_status_update', (players) => {
-      console.log('✅ Squad status update:', players);
-      this.gameEngine.handleSquadStatusUpdate(players);
+    this.socket.on('host_transferred', (data) => {
+      console.log('Host transferred:', data);
+
+      if (data.newHostId === this.socket.id) {
+        this.gameEngine.isHost = true;
+        console.log('You are now the host!');
+      } else {
+        this.gameEngine.isHost = false;
+      }
+
+      // Update player list UI immediately
+      if (this.gameEngine.players) {
+        this.gameEngine.players = this.gameEngine.players.map((p) => ({
+          ...p,
+          isHost: p.id === data.newHostId,
+        }));
+        this.gameEngine.roomManager.updatePlayersList(this.gameEngine.players);
+      }
+    });
+
+    this.socket.on('room_closed', () => {
+      console.log('Room closed by host');
+
+      sessionStorage.removeItem('inRoom');
+      this.gameEngine.roomCode = null;
+      this.gameEngine.isHost = false;
+
+      // Show popup
+      const popup = document.querySelector('#room-closed-popup');
+      if (popup) popup.classList.remove('hidden');
+
+      // OK button → redirect to home
+      const okBtn = document.querySelector('#popup-ok-button');
+      if (okBtn) {
+        okBtn.onclick = () => {
+          popup.classList.add('hidden');
+          this.gameEngine.sectionManager.showSection('games-selector');
+        };
+      }
     });
   }
 
-  /**
-   * Emit create room event
-   */
+  // Emit create room event
   createRoom(gameType, username) {
-    if (!this.isConnected) {
-      console.warn('Socket not connected. Cannot create room.');
+    if (!this.socket) {
+      console.log('Socket connection not available');
       return false;
     }
-
     this.socket.emit('create_room', {
       gameType,
-      username
+      username: this.gameEngine.fullName,
     });
 
     return true;
   }
 
-  /**
-   * Emit join room event
-   */
+  // Emit join room event
   joinRoom(roomCode, gameType, username) {
-    if (!this.isConnected) {
-      console.warn('Socket not connected. Cannot join room.');
+    if (!this.socket) {
+      console.log('Socket connection not available');
       return false;
     }
 
-    console.log('📨 Joining room:', { roomCode, gameType, username });
+    console.log('Joining existing room:', {
+      roomCode,
+      gameType,
+      username: this.gameEngine.fullName,
+    });
 
     this.socket.emit('join_room', {
       roomCode,
       gameType,
-      username
+      username: this.gameEngine.fullName,
     });
 
     return true;
   }
 
-  /**
-   * Emit select category event (host only)
-   */
+  // Emit select category event
   selectCategory(roomCode, category) {
-    if (!this.isConnected || !roomCode) {
-      console.warn('Cannot select category. Not connected or no room code.');
+    if (!this.socket || !roomCode) {
       return false;
     }
-
     this.socket.emit('select_category', { roomCode, category });
     return true;
   }
 
-  /**
-   * Emit select clue and dark player event (host only)
-   */
+  // Emit clue and dark player selection event (host only)
   selectClueAndDarkPlayer(roomCode, data) {
-    if (!this.isConnected || !roomCode) {
-      console.warn('Cannot select clue. Not connected or no room code.');
+    if (!this.socket || !roomCode) {
+      console.log('Socket connection or room code not available');
       return false;
     }
-
     this.socket.emit('select_clue_and_dark_player', { roomCode, ...data });
     return true;
   }
 
-  /**
-   * Emit submit answer event
-   */
+  // Emit submit answer event
   submitAnswer(roomCode, answer) {
-    if (!this.isConnected || !roomCode) {
-      console.warn('Cannot submit answer. Not connected or no room code.');
+    if (!this.socket || !roomCode) {
+      console.log('Socket connection or room code not available');
       return false;
     }
-
     this.socket.emit('submit_answer', { roomCode, answer });
     return true;
   }
 
-  /**
-   * Emit submit clue guess event
-   */
+  // Emit submit clue guess event
   submitClueGuess(roomCode, guess) {
-    if (!this.isConnected || !roomCode) {
-      console.warn('Cannot submit guess. Not connected or no room code.');
+    if (!this.socket || !roomCode) {
+      console.log('Socket connection or room code not available');
       return false;
     }
-
     this.socket.emit('submit_clue_guess', { roomCode, guess });
     return true;
   }
 
-  /**
-   * Emit navigate to section event (host only)
-   */
+  // Emit navigate to section event (host only - navigates all players)
   navigateToSection(roomCode, sectionId) {
-    if (!this.isConnected || !roomCode) {
-      console.warn('Cannot navigate. Not connected or no room code.');
+    if (!this.socket || !roomCode) {
+      console.log('Socket connection or room code not available');
       return false;
     }
-
     this.socket.emit('navigate_section', { roomCode, sectionId });
     return true;
   }
 
-  /**
-   * Emit reset answers event (host only)
-   */
+  // Emit reset answers event (host only - resets answers for all players)
   resetAnswers(roomCode) {
-    if (!this.isConnected || !roomCode) {
-      console.warn('Cannot reset answers. Not connected or no room code.');
+    if (!this.socket || !roomCode) {
+      console.log('Socket connection or room code not available');
       return false;
     }
-
     this.socket.emit('reset_answers', { roomCode });
     return true;
   }
 
-  /**
-   * Emit vote dark player event
-   */
+  // Emit vote_dark_player event
   voteDarkPlayer(roomCode, votedPlayerId) {
-    if (!this.isConnected || !roomCode || !votedPlayerId) {
-      console.warn('Cannot vote. Missing required data.');
+    if (!this.socket || !roomCode || !votedPlayerId) {
+      console.warn('Missing socket, roomCode, or votedPlayerId');
       return false;
     }
-
-    console.log('🗳️ Voting for player:', votedPlayerId);
+    console.log('Emitting vote_dark_player:', { roomCode, votedPlayerId });
     this.socket.emit('vote_dark_player', { roomCode, votedPlayerId });
     return true;
   }
@@ -283,22 +228,5 @@ export class GameSocketHandler {
    */
   getSocket() {
     return this.socket;
-  }
-
-  /**
-   * Check if socket is connected
-   */
-  isSocketConnected() {
-    return this.isConnected && this.socket && this.socket.connected;
-  }
-
-  /**
-   * Disconnect socket
-   */
-  disconnect() {
-    if (this.socket) {
-      this.socket.disconnect();
-      this.isConnected = false;
-    }
   }
 }
