@@ -8,6 +8,10 @@ export default async function decorate(block) {
 
   const titleDiv = divs[0];
   titleDiv.classList.add('game-category-title');
+  const h2 = titleDiv.querySelector('h2');
+  if (h2 && h2.hasAttribute('id')) {
+    h2.removeAttribute('id');
+  }
 
   const instructionsWrapper = CreateElem('div', 'game-instructions-list');
 

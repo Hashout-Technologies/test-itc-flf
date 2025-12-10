@@ -19,6 +19,8 @@
     color: var(--color-dark-red);
     margin-top: 0;
     font-weight: var(--font-weight-bold);
+    position: relative;
+    display: inline-flex;
 }
 
 .game-categories .game-instructions-list {
@@ -134,7 +136,11 @@
 
 #game-room-creation .wrapper::before,
 #game-room-joining .wrapper::before,
-#game-room-details .wrapper::before{
+#game-room-details .wrapper::before,
+#choose-game-category .wrapper::before,
+#who-is-in-the-dark .wrapper::before,
+#youre-in-the-dark .wrapper::before,
+#clue-is-ready .wrapper::before{
     content: '';
     position: absolute;
     background-repeat: no-repeat;
@@ -148,7 +154,10 @@
     background-image: url('../../images/white-shade-bg.svg');
 }
 
-#game-room-details .wrapper::before{
+#game-room-details .wrapper::before,
+#choose-game-category .wrapper::before,
+#youre-in-the-dark .wrapper::before,
+#clue-is-ready .wrapper::before{
     background-image: url('../../images/white-shade-large-bg.svg');
 }
 
@@ -156,6 +165,26 @@
     background-image: url('../../images/white-shade-bg.svg');
 }
 
+#who-is-in-the-dark .wrapper::before{
+    background-image: url('../../images/cream-shade-large-bg.svg');
+}
+
+#game-room-creation .wrapper::after,
+#game-room-joining .wrapper::after,
+#game-room-details .wrapper::after,
+#choose-game-category .wrapper::after,
+#clue-is-ready .wrapper::after{
+    background-image: url('../../images/cookie-biscuit.svg');
+    content: '';
+    position: absolute;
+    top: -25px;
+    right: 0;
+    width: 190px;
+    height: 100%;
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 
 .game-categories button{
     margin: 0;
@@ -167,4 +196,18 @@
 
 .game-category-title{
     padding-top: 2.625rem;
+    text-align: center;
+}
+
+.game-category-title h2::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  width: 12px;
+  height: 12px;
+  background: url("../../icons/red-decorator.svg") no-repeat center top;
+  background-size: contain;
+  pointer-events: none;
 }

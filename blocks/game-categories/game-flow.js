@@ -62,7 +62,7 @@ function buildGameRoomJoining() {
   return `
     <section id="game-room-joining" class="game-room-layout">
       <div class="title">
-        Join a <br />
+        Host has created a <br />
         <span class="yellow">Room</span>
       </div>
       <div class="sub-title">
@@ -78,7 +78,7 @@ function buildGameRoomJoining() {
               class="room-code-input"
               maxlength="6"
               autocomplete="off"
-              placeholder="XXXXXX"
+              placeholder=""
             />
           </div>
           <span class="error-message" style="display: none;"></span>
@@ -162,7 +162,7 @@ function buildClueReady() {
         <div class="content clue-ready">
           <div class="image-container">
             <div class="image">
-              <span style="font-size: 48px;">🧁</span>
+              <img src="./icons/objects.png" alt="Clue Image" />
             </div>
           </div>
           <h3 class="clue-text">CUPCAKE</h3>
@@ -187,7 +187,7 @@ function buildYoureInDark() {
         <div class="content youre-in-the-dark">
           <div class="image-container">
             <div class="image">
-              <span style="font-size: 64px;">🌑</span>
+              <img src="./icons/dark.png" alt="Dark Room Image" />
             </div>
           </div>
           <h3 class="dark-text">You're in the Dark</h3>
@@ -232,10 +232,8 @@ function buildCategoryQuestion(questionNum) {
       
       <div class="note">
         <div class="note-container">
-          <div class="icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="#1F1F1F">
-              <circle cx="20" cy="20" r="18"/>
-            </svg>
+          <div class="tube-icon">
+            <img src="./icons/tubelight.svg" alt="tube" />
           </div>
           <p class="text">
             Answer questions about this category; think creatively!
@@ -244,10 +242,7 @@ function buildCategoryQuestion(questionNum) {
       </div>
       
       <div class="question-content">
-        <svg width="61" height="61" viewBox="0 0 61 61" fill="#BB1F3B" class="question-icon">
-          <circle cx="30.5" cy="30.5" r="28"/>
-          <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="32" fill="white">?</text>
-        </svg>
+        <img class="question-icon" src="./icons/question.svg" alt="question mark">
         <h2 class="question-text">
           ${questions[questionNum]}
         </h2>
@@ -267,6 +262,44 @@ function buildCategoryQuestion(questionNum) {
           </button>
         </div>
       </div>
+      <div class="squad-status">
+          <div class="content">
+            <div class="title">Check Who’s <span class="red">In</span></div>
+            <div class="sub-title">
+              Track who’s done and who’s<br />
+              still thinking
+            </div>
+            <div class="squad-container">
+              <div class="squad-card">
+                <div class="user-info">
+                  <div class="squad-card-icon">
+                    <img src="./icons/image.png" alt="User Icon" />
+                  </div>
+                  <div class="squad-card-name">Rajat Saini</div>
+                </div>
+                <div class="squad-card-status">Submitted</div>
+              </div>
+              <div class="squad-card">
+                <div class="user-info">
+                  <div class="squad-card-icon">
+                    <img src="./icons/image2.png" alt="User Icon" />
+                  </div>
+                  <div class="squad-card-name">Minakshi Pandey</div>
+                </div>
+                <div class="squad-card-status">Not Yet</div>
+              </div>
+              <div class="squad-card">
+                <div class="user-info">
+                  <div class="squad-card-icon">
+                    <img src="./icons/image3.png" alt="User Icon" />
+                  </div>
+                  <div class="squad-card-name">Meher Sharma</div>
+                </div>
+                <div class="squad-card-status">Submitted</div>
+              </div>
+            </div>
+          </div>
+        </div>
     </section>
   `;
 }
@@ -303,10 +336,8 @@ function buildDarkQuestion(questionNum) {
       
       <div class="note">
         <div class="note-container">
-          <div class="icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="#1F1F1F">
-              <circle cx="20" cy="20" r="18"/>
-            </svg>
+          <div class="target-icon">
+            <img class="target-icon" src="./icons/target.svg" alt="question mark">
           </div>
           <p class="text">
             Answer questions on this word; beware the ignorant player!
@@ -315,10 +346,7 @@ function buildDarkQuestion(questionNum) {
       </div>
       
       <div class="question-content">
-        <svg width="61" height="61" viewBox="0 0 61 61" fill="#BB1F3B" class="question-icon">
-          <circle cx="30.5" cy="30.5" r="28"/>
-          <text x="50%" y="50%" text-anchor="middle" dy=".3em" font-size="32" fill="white">?</text>
-        </svg>
+        <img class="question-icon" src="./icons/question.svg" alt="question mark">
         <h2 class="question-text">
           ${questions[questionNum]}
         </h2>
@@ -356,10 +384,8 @@ function buildPlayerAnswers() {
       
       <div class="note">
         <div class="note-container">
-          <div class="icon">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="#1F1F1F">
-              <circle cx="20" cy="20" r="18"/>
-            </svg>
+          <div class="target-icon">
+            <img class="target-icon" src="./icons/target.svg" alt="question mark">
           </div>
           <p class="text">
             Answer questions on this word; beware the ignorant player!
@@ -496,17 +522,26 @@ function buildRevealAnswer() {
         <div class="content reveal-answer">
           <div class="secrect-card">
             <p class="secret-word-text">The secret word was:</p>
-            <span style="font-size: 36px;">🧁</span>
+            <img src="./icons/objects.png" alt="Secret Word" />
             <p class="secret-word">CUPCAKE</p>
           </div>
           
           <div class="player-in-the-dark">
+          <div class="top-left-corner">
+                <img src="./icons/mask-top-left.svg" alt="Top Left Corner" />
+              </div>
             <div class="player-avatar">
-              <span style="font-size: 32px;">🌑</span>
+              <img src="./icons/dark.png" alt="Player Avatar" />
             </div>
             <div class="text">
               Player was<br />in <span class="yellow">Dark</span>
             </div>
+            <div class="bottom-right-corner">
+                <img
+                  src="./icons/mask-bottom-right.svg"
+                  alt="Bottom Right Corner"
+                />
+              </div>
           </div>
           
           <div class="voting-results">
@@ -518,10 +553,22 @@ function buildRevealAnswer() {
           </div>
           
           <div class="view-leadboard">
+          <div class="top-left-corner">
+                <img
+                  src="./icons/mask-top-left_or.svg"
+                  alt="Top Left Corner"
+                />
+              </div>
             <div class="text">Every points counts</div>
             <div class="button">
               <button class="view-leadboard-button">VIEW LEADERBOARD</button>
             </div>
+            <div class="bottom-right-corner">
+                <img
+                  src="./icons/mask-bottom-right_or.svg"
+                  alt="Bottom Right Corner"
+                />
+              </div>
           </div>
           
           <div class="buttons">
@@ -543,7 +590,7 @@ function buildWinner() {
         
         <div class="content winner">
           <div class="secrect-card">
-            <span style="font-size: 64px; margin-top: -3rem;">🏆</span>
+            <img src="./icons/trophy.svg" alt="Trophy" />
             <p class="secret-word">Congratulations!</p>
             <p class="secret-word-text">Winner is the champion</p>
           </div>
@@ -562,6 +609,12 @@ function buildWinner() {
           </div>
           
           <div class="view-leadboard">
+          <div class="top-left-corner">
+                <img
+                  src="./icons/mask-top-left_or.svg"
+                  alt="Top Left Corner"
+                />
+              </div>
             <div class="text">
               Every points<br />
               counts
@@ -569,6 +622,12 @@ function buildWinner() {
             <div class="button">
               <button class="view-leadboard-button">VIEW LEADERBOARD</button>
             </div>
+             <div class="bottom-right-corner">
+                <img
+                  src="./icons/mask-bottom-right_or.svg"
+                  alt="Bottom Right Corner"
+                />
+              </div>
           </div>
         </div>
       </div>
@@ -590,6 +649,52 @@ function buildLeaderboard() {
               You are doing better than 60% of other players!
             </p>
           </div>
+
+          <div class="podium-container">
+              <div class="podium">
+                <!-- 2nd Place (Left) -->
+                <div class="podium-stage second-place">
+                  <div class="player-profile">
+                    <div class="profile-image">
+                      <img src="./icons/image2.png" alt="Minakshi Pandey" />
+                    </div>
+                    <div class="player-name">Minakshi Pandey</div>
+                  </div>
+                  <div class="podium-block">
+                    <div class="podium-number">2</div>
+                  </div>
+                </div>
+
+                <!-- 1st Place (Center) -->
+                <div class="podium-stage first-place">
+                  <div class="player-profile">
+                    <div class="crown-icon">
+                      <img src="./icons/crown.svg" alt="Crown Icon" />
+                    </div>
+                    <div class="profile-image">
+                      <img src="./icons/image2.png" alt="Rajat Saini" />
+                    </div>
+                    <div class="player-name">Rajat Saini</div>
+                  </div>
+                  <div class="podium-block">
+                    <div class="podium-number">1</div>
+                  </div>
+                </div>
+
+                <!-- 3rd Place (Right) -->
+                <div class="podium-stage third-place">
+                  <div class="player-profile">
+                    <div class="profile-image">
+                      <img src="./icons/image2.png" alt="Meher Sharma" />
+                    </div>
+                    <div class="player-name">Meher Sharma</div>
+                  </div>
+                  <div class="podium-block">
+                    <div class="podium-number">3</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           
           <div class="rankings">
             <div class="rankings-table">
@@ -640,6 +745,7 @@ function notQualifiedPopup() {
     return `
     <div id="not-qualified-popup" class="popup-overlay hidden">
       <div class="popup-content">
+      <img class="close-popup" src="./icons/close.svg" alt="close"/>
         <div class="popup-header">
           <div class="img-container">
             <img src="./icons/alarm-clock.svg" alt="Alarm Clock Icon" class="popup-icon" />

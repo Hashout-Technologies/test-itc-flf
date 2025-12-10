@@ -417,7 +417,7 @@ export class GameRoomManager {
 
     // Find all squad containers in the current section
     const squadContainers = document.querySelectorAll(
-      `#${currentSection} .suquad-container`,
+      `#${currentSection} .squad-container`,
     );
 
     if (squadContainers.length === 0) return;
@@ -436,7 +436,7 @@ export class GameRoomManager {
       // Create squad cards for each player
       otherPlayers.forEach((player, index) => {
         const squadCard = document.createElement('div');
-        squadCard.className = 'suquad-card';
+        squadCard.className = 'squad-card';
 
         // Check if player has submitted answer for this question
         const hasSubmitted = this.checkPlayerSubmission(
@@ -454,12 +454,12 @@ export class GameRoomManager {
 
         squadCard.innerHTML = `
           <div class="user-info">
-            <div class="suquad-card-icon">
+            <div class="squad-card-icon">
               <img src="${avatarImage}" alt="User Icon" />
             </div>
-            <div class="suquad-card-name">${player.username}</div>
+            <div class="squad-card-name">${player.username}</div>
           </div>
-          <div class="suquad-card-status">${hasSubmitted ? 'Submitted' : 'Not Yet'}</div>
+          <div class="squad-card-status">${hasSubmitted ? 'Submitted' : 'Not Yet'}</div>
         `;
 
         container.appendChild(squadCard);

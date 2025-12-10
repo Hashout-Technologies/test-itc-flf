@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity */
+
 /* ========================================
    FOOTER VISIBILITY CONTROL
    ======================================== */
@@ -46,12 +48,13 @@
 /* ========================================
    GAME ROOM LAYOUT STYLES
    ======================================== */
-.game-container {
+.game-container > section:not(#winner, #leaderboard,#reveal-answer) {
   background-color: #bb1f3b;
 }
 
 .game-container > section{
   padding-top: 2.625rem;
+  display: none !important;
 }
 
 /* Hide all game-room-layout sections by default */
@@ -113,8 +116,7 @@
 
 .game-room-layout .title {
   color: white;
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 28px;
   line-height: 32px;
   text-align: center;
@@ -122,8 +124,7 @@
 }
 
 .game-room-layout .sub-title {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   text-align: center;
@@ -133,14 +134,11 @@
 
 .game-room-layout .wrapper {
   width: 100%;
-  min-height: 40rem;
+  min-height: 554px;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 0;
-  overflow: hidden;
+  padding: 115px 0 0;
 }
 
 .game-room-layout .wrapper .background {
@@ -167,7 +165,7 @@
 .game-room-layout .wrapper .content {
   position: relative;
   z-index: 1;
-  width: 100%;
+  /* width: 100%; */
   margin: 0 auto;
 }
 
@@ -175,13 +173,13 @@
    GAME ROOM CREATION STYLES
    ======================================== */
 .creation .code-text {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 24px;
   line-height: 28px;
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
+  margin-top: 0;
 }
 
 .creation .code-container {
@@ -192,7 +190,6 @@
 
 .creation .room-code {
   font-weight: 800;
-  font-style: extrabold;
   font-size: 40px;
   line-height: 48px;
   letter-spacing: 10.94px;
@@ -223,7 +220,7 @@
 }
 
 .creation p {
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
@@ -246,7 +243,7 @@
   max-width: 324px;
   padding: 14px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: white;
@@ -274,7 +271,7 @@
   max-width: 324px;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -291,8 +288,7 @@
    ======================================== */
 
 .joining h3 {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 24px;
   line-height: 28px;
   letter-spacing: 0%;
@@ -302,8 +298,7 @@
 }
 
 .joining p {
-  font-weight: 400;
-  font-style: regular;
+  font-weight: var(--font-weight-regular);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
@@ -317,6 +312,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 40px;
 }
 
 .joining input {
@@ -327,8 +323,7 @@
   border-width: 1px;
   border: 1px solid #b8b8b8;
   outline: none;
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 32px;
   line-height: 36px;
   letter-spacing: 10px;
@@ -340,16 +335,16 @@
 .joining .error-message {
   color: #bb1f3b;
   font-size: 12px;
-  font-weight: 400;
-  margin-left: 3.6rem;
+  font-weight: var(--font-weight-regular);
+  margin-left: 40px;
   margin-top: 0.5rem;
   min-height: 20px;
 }
 
 @media (width >= 768px) {
-  .joining .error-message {
+  /* .joining .error-message {
     margin-left: 7.8rem;
-  }
+  } */
 }
 
 .joining .buttons {
@@ -367,7 +362,7 @@
   max-width: 324px;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -393,9 +388,8 @@
    GAME ROOM DETAILS STYLES
    ======================================== */
 .details .code-text {
-  margin-top: 4.5rem;
-  font-weight: 500;
-  font-style: medium;
+  margin-top: 0;
+  font-weight: var(--font-weight-medium);
   font-size: 24px;
   line-height: 28px;
   letter-spacing: 0%;
@@ -406,8 +400,7 @@
 }
 
 .details .code {
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 32px;
   line-height: 36px;
   letter-spacing: 10px;
@@ -468,8 +461,7 @@
 }
 
 .details .actions span {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
@@ -479,8 +471,7 @@
 }
 
 .details .players-in-lobby {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 28px;
   line-height: 32px;
   letter-spacing: 0;
@@ -494,8 +485,7 @@
 }
 
 .details .players-gathered {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
@@ -546,7 +536,7 @@
   max-width: 324px;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -562,12 +552,11 @@
    CHOOSE GAME CATEGORY STYLES
    ======================================== */
 .game-category .categories-cards {
-  margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
   gap: 20px;
-  padding: 20px;
+  padding: 0 1rem;
 }
 
 .game-category .categories-cards .category-card {
@@ -599,8 +588,7 @@
 }
 
 .game-category .categories-cards .category-card .text {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
@@ -639,7 +627,7 @@
   max-width: 324px;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -690,8 +678,7 @@
 .clue-ready .clue-text {
   margin-top: 2rem;
   color: #1f1f1f;
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 28px;
   line-height: 36px;
   letter-spacing: 0;
@@ -712,7 +699,7 @@
   max-width: 324px;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -746,8 +733,7 @@
 
 .youre-in-the-dark .dark-text {
   margin-top: 1rem;
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 28px;
   line-height: 36px;
   letter-spacing: 0;
@@ -768,7 +754,7 @@
   max-width: 324px;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -783,10 +769,6 @@
 /* ========================================
    GAME QUESTION STYLES
    ======================================== */
-main:has(.game-question.active) {
-  background-color: #bb1f3b;
-  min-height: 100vh;
-}
 
 .question-timer {
   width: 100%;
@@ -803,8 +785,7 @@ main:has(.game-question.active) {
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  font-weight: 400;
-  font-style: regular;
+  font-weight: var(--font-weight-regular);
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
@@ -850,13 +831,12 @@ main:has(.game-question.active) {
 }
 
 .game-question .question-category .container span {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
   vertical-align: middle;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .game-question .question-category .container img {
@@ -894,8 +874,7 @@ main:has(.game-question.active) {
 }
 
 .game-question .note .note-container .text {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
@@ -911,7 +890,7 @@ main:has(.game-question.active) {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: #fff;
+  background-color: var(--color-white);
   border-radius: 24px;
   padding: 24px;
 }
@@ -923,8 +902,7 @@ main:has(.game-question.active) {
 }
 
 .game-question .question-content .question-text {
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 24px;
   line-height: 32px;
   letter-spacing: 0;
@@ -940,8 +918,7 @@ main:has(.game-question.active) {
 }
 
 .game-question .question-input .input-label {
-  font-weight: 400;
-  font-style: regular;
+  font-weight: var(--font-weight-regular);
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0%;
@@ -958,8 +935,7 @@ main:has(.game-question.active) {
   border-width: 1px;
   border: 1px solid #b8b8b8;
   outline: none;
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
@@ -968,8 +944,7 @@ main:has(.game-question.active) {
 }
 
 .game-question .question-input .char-count {
-  font-weight: 400;
-  font-style: regular;
+  font-weight: var(--font-weight-regular);
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0%;
@@ -991,7 +966,7 @@ main:has(.game-question.active) {
   width: 186.46px;
   padding: 13px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -1003,7 +978,7 @@ main:has(.game-question.active) {
   border: none;
 }
 
-.game-question .suquad-status {
+.game-question .squad-status {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1013,7 +988,7 @@ main:has(.game-question.active) {
   margin-top: 2rem;
 }
 
-.game-question .suquad-status .background img {
+.game-question .squad-status .background img {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -1022,14 +997,14 @@ main:has(.game-question.active) {
   z-index: 0;
 }
 
-.game-question .suquad-status .content {
+.game-question .squad-status .content {
   position: relative;
   margin: 2rem 0;
   width: 100%;
 }
 
-.game-question .suquad-status .content .title {
-  font-weight: 400;
+.game-question .squad-status .content .title {
+  font-weight: var(--font-weight-regular);
   font-size: 28px;
   line-height: 32px;
   letter-spacing: 0;
@@ -1037,8 +1012,8 @@ main:has(.game-question.active) {
   vertical-align: middle;
 }
 
-.game-question .suquad-status .content .sub-title {
-  font-weight: 500;
+.game-question .squad-status .content .sub-title {
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
@@ -1046,7 +1021,7 @@ main:has(.game-question.active) {
   text-align: center;
 }
 
-.game-question .suquad-status .content .suquad-container {
+.game-question .squad-status .content .squad-container {
   margin-top: 2rem;
   display: flex;
   align-items: center;
@@ -1056,7 +1031,7 @@ main:has(.game-question.active) {
   padding: 0 2rem;
 }
 
-.game-question .suquad-status .content .suquad-card {
+.game-question .squad-status .content .squad-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1068,7 +1043,7 @@ main:has(.game-question.active) {
   border-radius: 15px;
 }
 
-.game-question .suquad-status .content .suquad-card .user-info {
+.game-question .squad-status .content .squad-card .user-info {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1076,11 +1051,11 @@ main:has(.game-question.active) {
 }
 
 .game-question
-  .suquad-status
+  .squad-status
   .content
-  .suquad-card
+  .squad-card
   .user-info
-  .suquad-card-icon
+  .squad-card-icon
   img {
   width: 47px;
   height: 47px;
@@ -1088,12 +1063,12 @@ main:has(.game-question.active) {
 }
 
 .game-question
-  .suquad-status
+  .squad-status
   .content
-  .suquad-card
+  .squad-card
   .user-info
-  .suquad-card-name {
-  font-weight: 500;
+  .squad-card-name {
+  font-weight: var(--font-weight-medium);
   font-style: medium;
   font-size: 16px;
   line-height: 20px;
@@ -1103,8 +1078,8 @@ main:has(.game-question.active) {
   color: #1e2939;
 }
 
-.game-question .suquad-status .content .suquad-card .suquad-card-status {
-  font-weight: 400;
+.game-question .squad-status .content .squad-card .squad-card-status {
+  font-weight: var(--font-weight-regular);
   font-style: regular;
   font-size: 16px;
   line-height: 20px;
@@ -1124,9 +1099,8 @@ main:has(.game-question.active) {
   gap: 0.5rem;
 }
 
-.game-question .suquad-status .title {
-  font-weight: 700;
-  font-style: bold;
+.game-question .squad-status .title {
+  font-weight: var(--font-weight-bold);
   font-size: 24px;
   line-height: 32px;
   letter-spacing: 0;
@@ -1170,8 +1144,7 @@ main:has(.game-question.active) {
 }
 
 .answer-card .player-info .player-name {
-  font-weight: 400;
-  font-style: regular;
+  font-weight: var(--font-weight-regular);
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0;
@@ -1180,8 +1153,7 @@ main:has(.game-question.active) {
 }
 
 .answer-card .player-answer {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
@@ -1196,7 +1168,7 @@ main:has(.game-question.active) {
   width: 100%;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -1205,7 +1177,7 @@ main:has(.game-question.active) {
 .answers .spot-dark-button {
   width: 100%;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -1224,23 +1196,22 @@ main:has(.game-question.active) {
 .who-is-in-the-dark {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
 }
 
 .who-is-in-the-dark .mystery-players {
-  width: 324;
-  height: 436;
+  width: 324px;
+  /* height: 436px; */
   opacity: 1;
   border-radius: 24px;
   gap: 28px;
   padding: 28px;
-  background-color: #fff;
+  background-color: var(--color-white);
 }
 
 .who-is-in-the-dark .mystery-players h3 {
-  font-weight: 600;
-  font-style: semibold;
+  font-weight: var(--font-weight-semibold);
   font-size: 28px;
   line-height: 32px;
   letter-spacing: 0%;
@@ -1269,7 +1240,7 @@ main:has(.game-question.active) {
 }
 
 .who-is-in-the-dark .mystery-players .players .player .name {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-style: medium;
   font-size: 20px;
   line-height: 24px;
@@ -1280,7 +1251,7 @@ main:has(.game-question.active) {
 }
 
 .who-is-in-the-dark .button {
-  margin-top: 2rem;
+  margin-top: 36px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -1291,7 +1262,7 @@ main:has(.game-question.active) {
   max-width: 324px;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
   background-color: #bb1f3b;
@@ -1330,7 +1301,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .game-room-result-layout .wrapper {
-  padding-top: 3rem;
+  /* padding-top: 3rem; */
   position: relative;
   z-index: 1;
   width: 100%;
@@ -1341,13 +1312,13 @@ main:has(.game-room-result-layout.active) {
 }
 
 .game-room-result-layout .wrapper .title {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-style: medium;
   font-size: 28px;
   line-height: 32px;
   letter-spacing: 0;
   text-align: center;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .game-room-result-layout .wrapper .title .yellow {
@@ -1355,13 +1326,13 @@ main:has(.game-room-result-layout.active) {
 }
 
 .game-room-result-layout .wrapper .sub-title {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-style: medium;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
   text-align: center;
-  color: #fff;
+  color: var(--color-white);
 }
 
 /* ========================================
@@ -1383,9 +1354,10 @@ main:has(.game-room-result-layout.active) {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #fff;
+  background-color: var(--color-white);
   width: 343px;
-  height: 172px;
+  /* height: 172px; */
+  padding: 28px;
   border-radius: 24px;
   box-shadow: 1px 2px 4px 0 #0000000a, 2px 7px 8px 0 #00000008,
     5px 17px 11px 0 #00000005, 9px 30px 13px 0 #00000003,
@@ -1397,9 +1369,10 @@ main:has(.game-room-result-layout.active) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: var(--color-white);
   width: 343px;
-  height: 172px;
+  /* height: 172px; */
+  padding: 28px;
   border-radius: 24px;
   box-shadow: 1px 2px 4px 0 #0000000a, 2px 7px 8px 0 #00000008,
     5px 17px 11px 0 #00000005, 9px 30px 13px 0 #00000003,
@@ -1408,14 +1381,14 @@ main:has(.game-room-result-layout.active) {
 
 .reveal-answer .secrect-card .secret-word-text,
 .winner .secrect-card .secret-word-text {
-  font-weight: 400;
-  font-style: regular;
+  font-weight: var(--font-weight-regular);
   font-size: 20px;
   line-height: 24px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-align: center;
   vertical-align: middle;
   color: #1e2939;
+  margin: 0;
 }
 
 .reveal-answer .secrect-card img {
@@ -1431,14 +1404,14 @@ main:has(.game-room-result-layout.active) {
 }
 
 .reveal-answer .secrect-card .secret-word {
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 36px;
   line-height: 32px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-align: center;
   vertical-align: middle;
   color: #1f1f1f;
+  margin: 0;
 }
 
 .winner .secrect-card .secret-word {
@@ -1482,20 +1455,19 @@ main:has(.game-room-result-layout.active) {
 
 .reveal-answer .player-in-the-dark .text,
 .winner .player-in-the-dark .text {
-  font-weight: 400;
-  font-style: regular;
+  font-weight: var(--font-weight-regular);
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .reveal-answer .player-in-the-dark .text .yellow,
 .winner .player-in-the-dark .text .yellow {
   color: #f2eb3c;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .reveal-answer .voting-results,
@@ -1509,8 +1481,7 @@ main:has(.game-room-result-layout.active) {
 
 .reveal-answer .voting-results .title,
 .winner .voting-results .title {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 28px;
   line-height: 32px;
   letter-spacing: 0;
@@ -1525,8 +1496,7 @@ main:has(.game-room-result-layout.active) {
 
 .reveal-answer .voting-results .sub-title,
 .winner .voting-results .sub-title {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
@@ -1545,7 +1515,7 @@ main:has(.game-room-result-layout.active) {
   gap: 1rem;
   border-radius: 24px;
   padding: 16px 0;
-  background-color: #fff;
+  background-color: var(--color-white);
 }
 
 .reveal-answer .voting-results .results-table .result-header,
@@ -1556,8 +1526,7 @@ main:has(.game-room-result-layout.active) {
   justify-content: space-between;
   width: 100%;
   padding: 0 32px;
-  font-weight: 600;
-  font-style: semibold;
+  font-weight: var(--font-weight-semibold);
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
@@ -1574,8 +1543,7 @@ main:has(.game-room-result-layout.active) {
   justify-content: space-between;
   width: 100%;
   padding: 13px 32px;
-  font-weight: 400;
-  font-style: regular;
+  font-weight: var(--font-weight-regular);
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
@@ -1591,7 +1559,7 @@ main:has(.game-room-result-layout.active) {
 .reveal-answer .voting-results .results-table .result-item.active,
 .winner .voting-results .results-table .result-item.active {
   background-color: #ed710a;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .reveal-answer .view-leadboard,
@@ -1625,8 +1593,7 @@ main:has(.game-room-result-layout.active) {
 
 .reveal-answer .view-leadboard .text,
 .winner .view-leadboard .text {
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 24px;
   line-height: 28px;
   letter-spacing: 0%;
@@ -1651,14 +1618,14 @@ main:has(.game-room-result-layout.active) {
   max-width: 173px;
   padding: 16px 0;
   border-radius: 100px;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-style: bold;
   font-size: 12.81px;
   line-height: 16.02px;
   letter-spacing: 0;
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--color-white);
   background-color: #bb2038;
   border: none;
 }
@@ -1681,8 +1648,7 @@ main:has(.game-room-result-layout.active) {
   padding: 16px 0;
   border-radius: 100px;
   border: none;
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
@@ -1700,7 +1666,7 @@ main:has(.game-room-result-layout.active) {
 .reveal-answer .buttons .play-more-button,
 .winner .buttons .play-more-button {
   background-color: #bb2038;
-  color: #fff;
+  color: var(--color-white);
 }
 
 /* ========================================
@@ -1733,7 +1699,7 @@ main:has(.game-room-result-layout.active) {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 24px;
   line-height: 32px;
   letter-spacing: 0;
@@ -1741,12 +1707,11 @@ main:has(.game-room-result-layout.active) {
   background-color: #bb1f3b;
   padding: 10px 12px;
   border-radius: 12px;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .leaderboard .note-card .text {
-  font-weight: 500;
-  font-style: medium;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0%;
@@ -1762,11 +1727,7 @@ main:has(.game-room-result-layout.active) {
   justify-content: center;
   width: 21.438rem;
   gap: 1rem;
-  background-color: #fff;
-  border-radius: 24px;
-  box-shadow: 2px 2px 6px 0 #0000000a, 9px 6px 11px 0 #00000008,
-    21px 14px 15px 0 #00000005, 37px 24px 18px 0 #00000003,
-    57px 38px 19px 0 #0000;
+  position: relative;
 }
 
 .leaderboard .rankings .rankings-table {
@@ -1775,6 +1736,12 @@ main:has(.game-room-result-layout.active) {
   align-items: center;
   justify-content: center;
   width: 100%;
+  background-color: var(--color-white);
+  border-radius: 24px;
+  box-shadow: 2px 2px 6px 0 #0000000a, 9px 6px 11px 0 #00000008,
+    21px 14px 15px 0 #00000005, 37px 24px 18px 0 #00000003,
+    57px 38px 19px 0 #0000;
+  position: relative;
 }
 
 .leaderboard .rankings .rankings-table .rankings-header {
@@ -1787,8 +1754,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .leaderboard .rankings .rankings-table .rankings-header .cell {
-  font-weight: 700;
-  font-style: bold;
+  font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
@@ -1807,7 +1773,7 @@ main:has(.game-room-result-layout.active) {
 
 .leaderboard .rankings .rankings-table .rankings-item.active {
   background-color: #ed710a;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .leaderboard .rankings .rankings-table .rankings-item:last-child {
@@ -1821,7 +1787,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .leaderboard .rankings .rankings-table .rankings-item .cell {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-style: medium;
   font-size: 16px;
   line-height: 20px;
@@ -1870,19 +1836,19 @@ main:has(.game-room-result-layout.active) {
   border-radius: 80.09px;
   border: none;
   background-color: #bb1f3b;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-style: bold;
   font-size: 12.81px;
   line-height: 16.02px;
   letter-spacing: 0;
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--color-white);
 }
 
 /* Podium Styles */
 .podium-container {
-  margin-top: 2rem;
+  margin-top: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1925,7 +1891,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .player-name {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-style: medium;
   font-size: 9px;
   line-height: 14.4px;
@@ -2032,24 +1998,24 @@ main:has(.game-room-result-layout.active) {
 }
 
 #clue-answers .timer-header .number {
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   font-size: 20px;
   line-height: 28px;
   letter-spacing: 0%;
   vertical-align: middle;
-  color: #fff;
+  color: var(--color-white);
 }
 
 #clue-answers .timer-header .counter-down {
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
   vertical-align: middle;
-  background-color: #fff;
+  background-color: var(--color-white);
   color: #ed710a;
   padding: 4px 8px;
   border-radius: 6.25rem;
@@ -2085,7 +2051,7 @@ main:has(.game-room-result-layout.active) {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #fff;
+  background-color: var(--color-white);
   width: 20.25rem;
   opacity: 1;
   border-radius: 24px;
@@ -2096,7 +2062,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .clue-answers .clue-answers-container .title {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 28px;
   line-height: 36px;
   letter-spacing: 0%;
@@ -2117,7 +2083,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .clue-answers .clue-answers-container .clue-answer-card .anwer {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
@@ -2139,7 +2105,7 @@ main:has(.game-room-result-layout.active) {
   border-radius: 6.25rem;
   background-color: #bb1f3b;
   color: white;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   font-size: 13.14px;
   line-height: 16.43px;
   text-align: center;
@@ -2224,14 +2190,14 @@ main:has(.game-room-result-layout.active) {
 
   margin-left: auto;
   margin-right: auto;
-  max-width: 33.75rem;
+  max-width: var(--layout-width);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   width: 100%;
 }
 
 .popup-content {
-  background: #fff;
+  background: var(--color-white);
   padding: 2rem;
   border-radius: 16px;
   text-align: center;
@@ -2264,7 +2230,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .popup-message .highlighted-name {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: #F37906;
 }
 
@@ -2274,7 +2240,7 @@ main:has(.game-room-result-layout.active) {
   border: none;
   border-radius: 8px;
   padding: 0.6rem 1.2rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -2305,8 +2271,8 @@ main:has(.game-room-result-layout.active) {
 }
 
 .popup-content {
-  background: #fff;
-  padding: 30px 40px;
+  background: var(--color-white);
+  padding: 44px 40px;
   text-align: center;
   width: 100%;
 
@@ -2324,18 +2290,125 @@ main:has(.game-room-result-layout.active) {
     margin-top: 10px;
     padding: 16px 60px;
     background: #bb1f3b;
-    color: #fff;
+    color: var(--color-white);
     border: none;
     border-radius: 100px;
     cursor: pointer;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
 }
 
 .non-host-waiting-msg {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 16px;
   color: #1f1f1f;
   line-height: 1.2;
   text-align: center;
+}
+
+
+.close-popup{
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  top: 15px;
+  right: 13px;
+
+}
+
+.squad-status::before{
+  content: '';
+  background-image: url('../../images/white-shade-bg.svg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.game-question .note .note-container .tube-icon img{
+  width: 40px;
+  height: 42px;
+  vertical-align: middle;
+}
+
+#reveal-answer::before,
+#winner::before,
+#leaderboard::before{
+  content: '';
+  background-image: url('../../images/curve-top-red-bg.svg');
+  width: 100%;
+  height: 358px;
+  position: absolute;
+  top: -10%;
+  left: 0;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.game-question .note .note-container .tube-icon,
+.game-question .note .note-container .target-icon{
+  flex: 0 0 auto;
+}
+
+
+.new-game-button {
+      background-color: transparent;
+    padding: 20px 32px;
+    opacity: 1;
+    border-radius: 6.25rem;
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    line-height: 1.25rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-dark-red);
+    border: 0.125rem solid var(--color-dark-red);
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+.play-more-button{
+  background-color: var(--color-dark-red);
+    padding: 20px 32px;
+    opacity: 1;
+    border-radius: 6.25rem;
+    font-weight: var(--font-weight-bold);
+    font-size: 1rem;
+    line-height: 1.25rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--color-white);
+    text-decoration: none;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+.play-more-button:hover{
+  background-color: var(--color-dark-red);
+}
+
+.new-game-button:hover{
+  background-color: transparent;
+}
+
+
+#reveal-answer, #winner,
+#leaderboard{
+  background-color: #FEF5EB;
+}
+
+.rankings::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 172px;
+    top: -102px;
+    left: 0;
+    background-image: url('../../images/rect-shade-bg.svg');
+    background-repeat: no-repeat;
 }
