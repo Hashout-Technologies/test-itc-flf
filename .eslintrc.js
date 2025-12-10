@@ -20,6 +20,8 @@ module.exports = {
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'import/prefer-default-export': 'off', // disables requiring default exports
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-console': ['error', { allow: ['log', 'warn', 'error'] }],
+    'class-methods-use-this': 'off',
     'xwalk/max-cells': ['error', {
       'game-cards-item': 5,
     }],

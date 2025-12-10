@@ -255,7 +255,8 @@ export class GameHandlers {
       } else {
         // Non-host: wait for clue_and_dark_player_selected event
         // Questions will be updated when clue is received via handleClueAndDarkPlayerSelected
-        // Check if we received clue and dark player from backend (shouldn't happen here, but handle it)
+        // Check if we received clue
+        //  and dark player from backend (shouldn't happen here, but handle it)
         if (data?.clue && data?.darkPlayerId) {
           this.gameEngine.selectedClue = data.clue;
           this.gameEngine.darkPlayerId = data.darkPlayerId;

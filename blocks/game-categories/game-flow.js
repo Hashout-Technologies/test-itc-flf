@@ -1,26 +1,4 @@
 // Build complete game HTML
-export function buildGameHTML() {
-  return `
-    ${buildGameRoomCreation()}
-    ${buildGameRoomJoining()}
-    ${buildGameRoomDetails()}
-    ${buildChooseCategory()}
-    ${buildClueReady()}
-    ${buildYoureInDark()}
-    ${buildCategoryQuestion(1)}
-    ${buildCategoryQuestion(2)}
-    ${buildDarkQuestion(1)}
-    ${buildDarkQuestion(2)}
-    ${buildPlayerAnswers()}
-    ${buildWhoIsInDark()}
-    ${buildClueAnswers()}
-    ${buildRevealAnswer()}
-    ${buildWinner()}
-    ${buildLeaderboard()}
-    ${notQualifiedPopup()}
-  `;
-}
-
 function buildGameRoomCreation() {
   return `
     <section id="game-room-creation" class="game-room-layout">
@@ -766,4 +744,26 @@ function notQualifiedPopup() {
           <button id="popup-ok-button">OK</button>
       </div>
     </div>`;
+}
+
+export function buildGameHTML() {
+  return `
+    ${buildGameRoomCreation()}
+    ${buildGameRoomJoining()}
+    ${buildGameRoomDetails()}
+    ${buildChooseCategory()}
+    ${buildClueReady()}
+    ${buildYoureInDark()}
+    ${buildCategoryQuestion(1)}
+    ${buildCategoryQuestion(2)}
+    ${buildDarkQuestion(1)}
+    ${buildDarkQuestion(2)}
+    ${buildPlayerAnswers()}
+    ${buildWhoIsInDark()}
+    ${buildClueAnswers()}
+    ${buildRevealAnswer()}
+    ${buildWinner()}
+    ${buildLeaderboard()}
+    ${notQualifiedPopup()}
+  `;
 }
