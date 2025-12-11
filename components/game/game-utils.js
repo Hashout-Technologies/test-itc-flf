@@ -24,8 +24,21 @@ export async function copyToClipboard(text) {
   }
 }
 
-export function shareOnWhatsApp(roomCode) {
-  const message = `Join my game room! Use code: ${roomCode}`;
+export function shareOnWhatsApp(roomCode, gameType) {
+  const currentUrl = window.location.origin + window.location.pathname;
+  const joinUrl = new URL(currentUrl);
+  joinUrl.searchParams.set('room', roomCode);
+  if (gameType) {
+    joinUrl.searchParams.set('game', gameType);
+  }
+
+  const gameTypeName = gameType === 'who-is-in-the-dark'
+    ? 'Who is in the Dark'
+    : gameType === 'category-game'
+      ? 'Category Game'
+      : 'Game';
+
+  const message = `Join my ${gameTypeName} room!\n\nRoom Code: ${roomCode}\n\nClick to join directly:\n${joinUrl.toString()}`;
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, '_blank');
 }

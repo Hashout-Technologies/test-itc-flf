@@ -39,6 +39,7 @@ export class GameEngine {
     this.playerPoints = {}; // Store points for each player { playerId: points }
     this.selectedClue = null; // Store selected clue for who-is-in-the-dark
     this.darkPlayerId = null; // Store the player ID who is in the dark
+    this.isAutoJoining = false; // Flag to prevent clearing input during auto-join
 
     // Initialize managers
     this.socketHandler = new GameSocketHandler(this);
@@ -54,22 +55,15 @@ export class GameEngine {
 
   // Initialize the game engine
   async init() {
-    // Prevent refreshed player from rejoining same room
-    const socket = this.socketHandler.getSocket && this.socketHandler.getSocket();
+    // Check for URL parameters FIRST (before handling existing room state)
+    // This allows users to join a new room via shared link even if they're in another room
+    const urlParams = new URLSearchParams(window.location.search);
+    const roomCodeFromUrl = urlParams.get('room');
+    const gameTypeFromUrl = urlParams.get('game');
+    const hasUrlParams = roomCodeFromUrl && roomCodeFromUrl.length === 6;
     const lastRoom = sessionStorage.getItem('roomCode');
     const inRoom = sessionStorage.getItem('inRoom');
 
-    if (socket && inRoom === 'true' && lastRoom) {
-      console.log('User refreshed — leaving old room:', lastRoom);
-
-      socket.emit('leave_room', { roomCode: lastRoom });
-
-      sessionStorage.removeItem('inRoom');
-      sessionStorage.removeItem('roomCode');
-
-      this.sectionManager.showSection('games-selector');
-      return;
-    }
     // Step 1: Check localStorage for user info FIRST (no backend auth)
     /*
     Original server session check (commented out):
@@ -117,14 +111,81 @@ export class GameEngine {
     // Step 3: Setup sockets and UI
     this.setupSocket();
     this.setupEventListeners();
-    this.sectionManager.showSection('games-selector');
+    // Now that socket is set up, handle leaving current room if needed
+    const socket = this.socketHandler.getSocket && this.socketHandler.getSocket();
+
+    // If user has URL parameters to join a new room, leave current room first (if any)
+    if (hasUrlParams && socket && inRoom === 'true' && lastRoom) {
+      console.log('Leaving current room to join new room from shared link:', lastRoom);
+      socket.emit('leave_room', { roomCode: lastRoom });
+      sessionStorage.removeItem('inRoom');
+      sessionStorage.removeItem('roomCode');
+    }
+
+    // If user refreshed inside a room (without URL params), leave and go to selector
+    if (!hasUrlParams && socket && inRoom === 'true' && lastRoom) {
+      console.log('User refreshed — leaving old room:', lastRoom);
+      socket.emit('leave_room', { roomCode: lastRoom });
+      sessionStorage.removeItem('inRoom');
+      sessionStorage.removeItem('roomCode');
+    }
 
     // If the page was refreshed inside a room → force redirect home
     if (lastRoom === 'true') {
       console.warn('Page refreshed inside room → redirecting to home...');
       sessionStorage.removeItem('inRoom');
       window.location.href = 'games.html';
+      return;
     }
+
+    // Check for URL parameters to auto-join room
+    // Note: We already checked for URL params above and left current room if needed
+    if (hasUrlParams) {
+      // Set flag to prevent input clearing during auto-join
+      this.isAutoJoining = true;
+
+      // Set game type if provided
+      if (gameTypeFromUrl) {
+        this.gameType = gameTypeFromUrl;
+      }
+
+      // Auto-join the room
+      this.roomCode = roomCodeFromUrl.toUpperCase();
+      this.sectionManager.updateRoomCodeDisplay(this.roomCode);
+
+      // Show joining section first
+      this.sectionManager.showSection('game-room-joining');
+
+      // Wait for the section to be fully rendered and any clear operations to complete
+      // Then set the input value and trigger join
+      setTimeout(() => {
+        const roomCodeInput = document.querySelector('.room-code-input');
+        if (roomCodeInput) {
+          roomCodeInput.value = this.roomCode;
+          // Trigger input event to enable the button
+          const inputEvent = new Event('input', { bubbles: true });
+          roomCodeInput.dispatchEvent(inputEvent);
+
+          // Trigger join after ensuring socket is ready
+          setTimeout(() => {
+            this.roomManager.handleJoinRoom();
+            // Clear the flag after join is triggered
+            this.isAutoJoining = false;
+          }, 300);
+        } else {
+          // If input not found, clear flag and try again
+          this.isAutoJoining = false;
+          console.error('Room code input not found during auto-join');
+        }
+      }, 200); // Wait longer than the clear timeout (100ms)
+
+      // Clean up URL parameters
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+      return; // Don't show games-selector if auto-joining
+    }
+
+    this.sectionManager.showSection('games-selector');
   }
 
   updateLoggedInUserDisplay(user) {
@@ -426,6 +487,10 @@ export class GameEngine {
 
     if (sectionId === 'game-room-joining') {
       setTimeout(() => {
+        // Don't clear input if we're auto-joining from URL
+        if (this.isAutoJoining) {
+          return;
+        }
         const joiningSection = document.getElementById('game-room-joining');
         if (joiningSection) {
           const roomCodeInput = joiningSection.querySelector('.room-code-input');
@@ -549,13 +614,13 @@ export class GameEngine {
 
     popup.classList.remove('hidden');
 
-    const button = popup.querySelector('.popup-button');
-    if (button) {
-      button.onclick = () => {
+    const triggers = popup.querySelectorAll('.popup-button, .close-popup');
+    triggers.forEach(el => {
+      el.onclick = () => {
         popup.classList.add('hidden');
         this.sectionManager.showSection('game-room-details');
       };
-    }
+    });
   }
 }
 

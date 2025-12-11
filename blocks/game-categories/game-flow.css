@@ -5,7 +5,7 @@
    ======================================== */
 
 .yellow {
-  color: #f2eb3c;
+  color: var(--light-yellow);
   position: relative;
   display: inline-block;
 }
@@ -24,7 +24,7 @@
 }
 
 .red {
-  color: #bb1f3b;
+  color: var(--color-dark-red);
   position: relative;
   display: inline-block;
 }
@@ -49,7 +49,7 @@
    GAME ROOM LAYOUT STYLES
    ======================================== */
 .game-container > section:not(#winner, #leaderboard,#reveal-answer) {
-  background-color: #bb1f3b;
+  background-color: var(--color-dark-red);
 }
 
 .game-container > section{
@@ -115,7 +115,7 @@
 }
 
 .game-room-layout .title {
-  color: white;
+  color: var(--color-white);
   font-weight: var(--font-weight-bold);
   font-size: 28px;
   line-height: 32px;
@@ -128,7 +128,7 @@
   font-size: 16px;
   line-height: 20px;
   text-align: center;
-  color: white;
+  color: var(--color-white);
   margin-bottom: 2rem;
 }
 
@@ -246,13 +246,13 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: white;
-  color: #bb1f3b;
+  background-color: var(--color-white);
+  color: var(--color-dark-red);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 2px solid #bb1f3b;
+  border: 2px solid var(--color-dark-red);
 }
 
 .creation .buttons .share-button .arrow-right {
@@ -274,8 +274,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -333,7 +333,7 @@
 }
 
 .joining .error-message {
-  color: #bb1f3b;
+  color: var(--color-dark-red);
   font-size: 12px;
   font-weight: var(--font-weight-regular);
   margin-left: 40px;
@@ -365,8 +365,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -481,7 +481,7 @@
 }
 
 .details .players-in-lobby .red {
-  color: #bb1f3b;
+  color: var(--color-dark-red);
 }
 
 .details .players-gathered {
@@ -539,8 +539,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -608,11 +608,11 @@
 }
 
 .game-category .categories-cards .category-card.selected .icon {
-  background-color: white;
+  background-color: var(--color-white);
 }
 
 .game-category .categories-cards .category-card.selected .text {
-  color: white;
+  color: var(--color-white);
 }
 
 .game-category .button {
@@ -630,8 +630,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -702,8 +702,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -757,8 +757,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -790,7 +790,7 @@
   line-height: 24px;
   letter-spacing: 0%;
   vertical-align: middle;
-  color: white;
+  color: var(--color-white);
 }
 
 .question-timer .timer-bar {
@@ -804,7 +804,7 @@
 .question-timer .timer-bar .timer-fill {
   width: 100%;
   height: 100%;
-  background-color: #f2eb3c;
+  background-color: var(--light-yellow);
   border-radius: 10px;
   transition: width 1s linear, background-color 0.3s ease;
 }
@@ -863,7 +863,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #f2eb3c;
+  background-color: var(--light-yellow);
   border-radius: 24px;
   padding: 1rem;
 }
@@ -883,8 +883,7 @@
 }
 
 .game-question .question-content {
-  margin-top: 2rem;
-  margin: 0 2rem;
+  margin: 2rem 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -909,7 +908,7 @@
   text-align: center;
   vertical-align: middle;
 
-  /* color: white; */
+  /* color: var(--color-white) */
 }
 
 .game-question .question-input {
@@ -969,8 +968,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1069,7 +1068,6 @@
   .user-info
   .squad-card-name {
   font-weight: var(--font-weight-medium);
-  font-style: medium;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
@@ -1080,7 +1078,6 @@
 
 .game-question .squad-status .content .squad-card .squad-card-status {
   font-weight: var(--font-weight-regular);
-  font-style: regular;
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0;
@@ -1171,7 +1168,7 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
+  background-color: var(--color-dark-red);
 }
 
 .answers .spot-dark-button {
@@ -1180,8 +1177,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1265,8 +1262,8 @@
   font-weight: var(--font-weight-bold);
   font-size: 16px;
   line-height: 1.2;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1322,7 +1319,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .game-room-result-layout .wrapper .title .yellow {
-  color: #f2eb3c;
+  color: var(--light-yellow);
 }
 
 .game-room-result-layout .wrapper .sub-title {
@@ -1466,7 +1463,7 @@ main:has(.game-room-result-layout.active) {
 
 .reveal-answer .player-in-the-dark .text .yellow,
 .winner .player-in-the-dark .text .yellow {
-  color: #f2eb3c;
+  color: var(--light-yellow);
   font-weight: var(--font-weight-bold);
 }
 
@@ -1558,7 +1555,7 @@ main:has(.game-room-result-layout.active) {
 
 .reveal-answer .voting-results .results-table .result-item.active,
 .winner .voting-results .results-table .result-item.active {
-  background-color: #ed710a;
+  background-color: var(--color-orange-dark);
   color: var(--color-white);
 }
 
@@ -1570,7 +1567,7 @@ main:has(.game-room-result-layout.active) {
   align-items: center;
   justify-content: center;
   border-radius: 24px;
-  background-color: #f2eb3c;
+  background-color: var(--light-yellow);
   width: 343px;
   height: 160.15px;
   padding: 16px;
@@ -1687,7 +1684,7 @@ main:has(.game-room-result-layout.active) {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #f2eb3c;
+  background-color: var(--light-yellow);
   border-radius: 24px;
   padding: 12px;
   box-shadow: 1px 2px 4px 0 #0000000a, 2px 7px 8px 0 #00000008,
@@ -1704,7 +1701,7 @@ main:has(.game-room-result-layout.active) {
   line-height: 32px;
   letter-spacing: 0;
   text-align: center;
-  background-color: #bb1f3b;
+  background-color: var(--color-dark-red);
   padding: 10px 12px;
   border-radius: 12px;
   color: var(--color-white);
@@ -1772,7 +1769,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .leaderboard .rankings .rankings-table .rankings-item.active {
-  background-color: #ed710a;
+  background-color: var(--color-orange-dark);
   color: var(--color-white);
 }
 
@@ -1835,7 +1832,7 @@ main:has(.game-room-result-layout.active) {
   padding: 12px 24px;
   border-radius: 80.09px;
   border: none;
-  background-color: #bb1f3b;
+  background-color: var(--color-dark-red);
   font-weight: var(--font-weight-bold);
   font-style: bold;
   font-size: 12.81px;
@@ -1951,7 +1948,7 @@ main:has(.game-room-result-layout.active) {
 .podium-number {
   font-size: 3.5rem;
   font-weight: bold;
-  color: white;
+  color: var(--color-white);
   text-shadow: 0 3px 6px rgb(0 0 0 / 50%);
   position: absolute;
   top: 50%;
@@ -1983,7 +1980,7 @@ main:has(.game-room-result-layout.active) {
 }
 
 .blue-background {
-  background: white;
+  background: var(--color-white);
   height: 10.75rem;
   width: 100%;
 }
@@ -2016,7 +2013,7 @@ main:has(.game-room-result-layout.active) {
   letter-spacing: 0%;
   vertical-align: middle;
   background-color: var(--color-white);
-  color: #ed710a;
+  color: var(--color-orange-dark);
   padding: 4px 8px;
   border-radius: 6.25rem;
 }
@@ -2032,7 +2029,7 @@ main:has(.game-room-result-layout.active) {
 #clue-answers .timer-bar .timer-fill {
   width: 100%;
   height: 100%;
-  background-color: #f2eb3c;
+  background-color: var(--light-yellow);
   border-radius: 10px;
   transition: width 1s linear, background-color 0.3s ease;
 }
@@ -2103,8 +2100,8 @@ main:has(.game-room-result-layout.active) {
   width: 11.625rem;
   padding: 16px 0;
   border-radius: 6.25rem;
-  background-color: #bb1f3b;
-  color: white;
+  background-color: var(--color-dark-red);
+  color: var(--color-white);
   font-weight: var(--font-weight-bold);
   font-size: 13.14px;
   line-height: 16.43px;
@@ -2236,7 +2233,7 @@ main:has(.game-room-result-layout.active) {
 
 .popup-button {
   background: #ff9f0a;
-  color: white;
+  color: var(--color-white);
   border: none;
   border-radius: 8px;
   padding: 0.6rem 1.2rem;
@@ -2289,7 +2286,7 @@ main:has(.game-room-result-layout.active) {
 .popup-content button {
     margin-top: 10px;
     padding: 16px 60px;
-    background: #bb1f3b;
+    background: var(--color-dark-red);
     color: var(--color-white);
     border: none;
     border-radius: 100px;
@@ -2314,7 +2311,7 @@ main:has(.game-room-result-layout.active) {
   position: absolute;
   top: 15px;
   right: 13px;
-
+  cursor: pointer;
 }
 
 .squad-status::before{
@@ -2411,4 +2408,9 @@ main:has(.game-room-result-layout.active) {
     left: 0;
     background-image: url('../../images/rect-shade-bg.svg');
     background-repeat: no-repeat;
+}
+
+
+.game-question{
+  padding-bottom: 50px;
 }

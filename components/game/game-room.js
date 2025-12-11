@@ -323,7 +323,9 @@ export class GameRoomManager {
     if (!roomCodeElement) return;
 
     const roomCode = roomCodeElement.textContent;
-    shareOnWhatsApp(roomCode);
+    // eslint-disable-next-line prefer-destructuring
+    const gameType = this.gameEngine.gameType;
+    shareOnWhatsApp(roomCode, gameType);
   }
 
   // Handle room code input
@@ -533,7 +535,10 @@ export class GameRoomManager {
 
     const categoryId = this.gameEngine.selectedCategory;
     const { selectedClue } = this.gameEngine;
-    const answersFormat = this.gameEngine.categoryManager?.getAnswersFormat(categoryId, selectedClue);
+    const answersFormat = this.gameEngine.categoryManager?.getAnswersFormat(
+      categoryId,
+      selectedClue,
+    );
     const isDarkGame = this.gameEngine.gameType === GAME_TYPES.WHO_IS_IN_THE_DARK;
     const requiresAnswer1 = isDarkGame || (answersFormat?.includes('{{answer1}}') ?? false);
 
