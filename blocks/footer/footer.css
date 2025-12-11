@@ -88,7 +88,7 @@ footer .footer a {
 
 .footer::after {
     content: "";
-    background-image: url("../../images/biscuit.svg");
+    background-image: url("../../images/biscuit.webp");
     position: absolute;
     right: 0;
     top: -10.375rem;

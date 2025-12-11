@@ -174,7 +174,7 @@
 #game-room-details .wrapper::after,
 #choose-game-category .wrapper::after,
 #clue-is-ready .wrapper::after{
-    background-image: url('../../images/cookie-biscuit.svg');
+    background-image: url('../../images/cookie-biscuit.webp');
     content: '';
     position: absolute;
     top: -25px;
