@@ -24,7 +24,7 @@ export class GameTimerManager {
     this.updateTimerDisplay();
 
     this.timerInterval = setInterval(() => {
-      this.timerRemaining--;
+      this.timerRemaining -= 1;
       this.updateTimerDisplay();
 
       if (this.timerRemaining <= 0) {

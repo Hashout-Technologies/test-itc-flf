@@ -140,7 +140,7 @@ function buildClueReady() {
         <div class="content clue-ready">
           <div class="image-container">
             <div class="image">
-              <img src="./icons/objects.png" alt="Clue Image" />
+              <img  alt="Clue Image" />
             </div>
           </div>
           <h3 class="clue-text">CUPCAKE</h3>
@@ -201,10 +201,8 @@ function buildCategoryQuestion(questionNum) {
       
       <div class="question-category">
         <div class="container">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
-            <circle cx="7" cy="7" r="6"/>
-          </svg>
-          <span>Food</span>
+          <img src="./icons/food.svg" alt="" />
+          <span></span>
         </div>
       </div>
       
@@ -305,10 +303,8 @@ function buildDarkQuestion(questionNum) {
       
       <div class="question-category">
         <div class="container">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
-            <circle cx="7" cy="7" r="6"/>
-          </svg>
-          <span>Food</span>
+          <img src="./icons/food.svg" alt="" />
+          <span></span>
         </div>
       </div>
       
@@ -353,10 +349,8 @@ function buildPlayerAnswers() {
     <section id="player-answers" class="game-question">
       <div class="question-category">
         <div class="container">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
-            <circle cx="7" cy="7" r="6"/>
-          </svg>
-          <span>Food</span>
+          <img src="./icons/food.svg" alt="" />
+          <span></span>
         </div>
       </div>
       
@@ -720,7 +714,7 @@ function buildLeaderboard() {
 }
 
 function notQualifiedPopup() {
-    return `
+  return `
     <div id="not-qualified-popup" class="popup-overlay hidden">
       <div class="popup-content">
       <img class="close-popup" src="./icons/close.svg" alt="close"/>

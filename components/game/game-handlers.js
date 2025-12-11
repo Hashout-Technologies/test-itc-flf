@@ -409,7 +409,6 @@ export class GameHandlers {
   // Handle submit button (used for multiple purposes)
   handleSubmitButton() {
     const { currentSection } = this.gameEngine;
-    const socket = this.gameEngine.socketHandler.getSocket();
 
     // CASE 1: Voting in "Who Is in the Dark"
     if (currentSection === 'who-is-in-the-dark') {
@@ -536,10 +535,6 @@ export class GameHandlers {
       console.log('No player ID found for selected answer');
       return;
     }
-
-    const questionText = document.querySelector(
-      '.clue-answers-container .title',
-    )?.textContent;
 
     // Get current player being viewed
     const currentPlayerIndex = this.gameEngine.roomManager.currentCluePlayerIndex;

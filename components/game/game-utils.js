@@ -32,13 +32,14 @@ export function shareOnWhatsApp(roomCode, gameType) {
     joinUrl.searchParams.set('game', gameType);
   }
 
-  const gameTypeName = gameType === 'who-is-in-the-dark'
-    ? 'Who is in the Dark'
-    : gameType === 'category-game'
-      ? 'Category Game'
-      : 'Game';
+  let gameTypeName = 'Game';
+  if (gameType === 'who-is-in-the-dark') {
+    gameTypeName = 'Who is in the Dark';
+  } else if (gameType === 'category-game') {
+    gameTypeName = 'Category Game';
+  }
 
-  const message = `Join my ${gameTypeName} room!\n\nRoom Code: ${roomCode}\n\nClick to join directly:\n${joinUrl.toString()}`;
+  const message = `Join my ${gameTypeName} room!\n\nRoom Code: ${roomCode}\n\nJoin here: ${joinUrl.toString()}`;
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, '_blank');
 }

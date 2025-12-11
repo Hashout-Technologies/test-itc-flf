@@ -53,6 +53,15 @@ export class GameEngine {
     this.init();
   }
 
+  hideInstructionSection() {
+    const titleSection = document.querySelector('.game-category-title');
+    const instructionsSection = document.querySelector('.game-instructions-list');
+    const buttonContainer = document.querySelector('.game-actions');
+    if (titleSection) titleSection.style.display = 'none';
+    if (instructionsSection) instructionsSection.style.display = 'none';
+    buttonContainer.style.display = 'none';
+  }
+
   // Initialize the game engine
   async init() {
     // Check for URL parameters FIRST (before handling existing room state)
@@ -116,7 +125,10 @@ export class GameEngine {
 
     // If user has URL parameters to join a new room, leave current room first (if any)
     if (hasUrlParams && socket && inRoom === 'true' && lastRoom) {
-      console.log('Leaving current room to join new room from shared link:', lastRoom);
+      console.log(
+        'Leaving current room to join new room from shared link:',
+        lastRoom,
+      );
       socket.emit('leave_room', { roomCode: lastRoom });
       sessionStorage.removeItem('inRoom');
       sessionStorage.removeItem('roomCode');
@@ -154,6 +166,7 @@ export class GameEngine {
       this.sectionManager.updateRoomCodeDisplay(this.roomCode);
 
       // Show joining section first
+      this.hideInstructionSection();
       this.sectionManager.showSection('game-room-joining');
 
       // Wait for the section to be fully rendered and any clear operations to complete
@@ -528,7 +541,9 @@ export class GameEngine {
 
       if (this.players && socket) {
         // Update this player's name across the current room state
-        this.players = this.players.map((p) => (p.id === socket.id ? { ...p, username: this.fullName } : p));
+        this.players = this.players.map((p) => (
+          p.id === socket.id ? { ...p, username: this.fullName } : p
+        ));
 
         // Re-render all player-based UI lists
         this.roomManager.updatePlayersList(this.players);
@@ -615,7 +630,7 @@ export class GameEngine {
     popup.classList.remove('hidden');
 
     const triggers = popup.querySelectorAll('.popup-button, .close-popup');
-    triggers.forEach(el => {
+    triggers.forEach((el) => {
       el.onclick = () => {
         popup.classList.add('hidden');
         this.sectionManager.showSection('game-room-details');

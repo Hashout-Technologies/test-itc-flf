@@ -73,7 +73,7 @@ export class GameCategoryManager {
 
         // Add question to category
         categoryMap[item.categoryId].questions.push({
-          order: parseInt(item.questionOrder),
+          order: parseInt(item.questionOrder, 10),
           text: item.questionText,
           answersFormat: item.answersFormat || null,
         });
@@ -90,7 +90,7 @@ export class GameCategoryManager {
 
         // Add question to dark category
         darkCategoryMap[item.categoryId].questions.push({
-          order: parseInt(item.questionOrder),
+          order: parseInt(item.questionOrder, 10),
           text: item.questionText,
           answersFormat: item.answersFormat || null,
         });
@@ -110,7 +110,7 @@ export class GameCategoryManager {
 
           // Add question to clue
           clueMap[item.clueId].questions.push({
-            order: parseInt(item.questionOrder),
+            order: parseInt(item.questionOrder, 10),
             text: item.questionText,
             answersFormat: item.answersFormat || null,
           });
@@ -370,6 +370,25 @@ export class GameCategoryManager {
         if (categoryName2) {
           categoryName2.textContent = category.categoryName;
         }
+      }
+    }
+
+    // Update player-answers section category (used by both game types)
+    const playerAnswersSection = document.querySelector('#player-answers');
+    if (playerAnswersSection) {
+      const categoryIcon = playerAnswersSection.querySelector(
+        '.question-category .container img',
+      );
+      const categoryName = playerAnswersSection.querySelector(
+        '.question-category .container span',
+      );
+
+      if (categoryIcon) {
+        categoryIcon.src = this.getCategoryIcon(categoryId);
+        categoryIcon.alt = category.categoryName;
+      }
+      if (categoryName) {
+        categoryName.textContent = category.categoryName;
       }
     }
   }

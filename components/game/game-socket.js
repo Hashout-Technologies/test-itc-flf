@@ -118,7 +118,7 @@ export class GameSocketHandler {
   }
 
   // Emit create room event
-  createRoom(gameType, username) {
+  createRoom(gameType) {
     if (!this.socket) {
       console.log('Socket connection not available');
       return false;
@@ -132,7 +132,7 @@ export class GameSocketHandler {
   }
 
   // Emit join room event
-  joinRoom(roomCode, gameType, username) {
+  joinRoom(roomCode, gameType) {
     if (!this.socket) {
       console.log('Socket connection not available');
       return false;

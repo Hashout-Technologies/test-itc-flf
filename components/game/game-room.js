@@ -141,7 +141,6 @@ export class GameRoomManager {
     sessionStorage.setItem('inRoom', 'true');
 
     const socket = this.gameEngine.socketHandler.getSocket();
-    const currentPlayerId = socket?.id;
 
     // Update host
     if (socket && socket.id) {
@@ -286,13 +285,13 @@ export class GameRoomManager {
         voteButton.style.cursor = 'pointer';
       }
 
-      // Disable the vote button for the dark player (so they can’t vote)
+      // Disable the vote button for the dark player (so they can't vote)
       if (socket && socket.id === darkPlayerId) {
-        const voteButton = document.querySelector('#who-is-in-the-dark .submit-button');
-        if (voteButton) {
-          voteButton.disabled = true;
-          voteButton.textContent = 'You are in the Dark!';
-          voteButton.style.opacity = '0.6';
+        const darkPlayerVoteButton = document.querySelector('#who-is-in-the-dark .submit-button');
+        if (darkPlayerVoteButton) {
+          darkPlayerVoteButton.disabled = true;
+          darkPlayerVoteButton.textContent = 'You are in the Dark!';
+          darkPlayerVoteButton.style.opacity = '0.6';
         }
       }
     }
@@ -502,9 +501,6 @@ export class GameRoomManager {
 
     answersContainer.innerHTML = '';
     answersContainer.style.display = 'grid';
-
-    const socket = this.gameEngine.socketHandler.getSocket();
-    const currentPlayerId = socket?.id;
 
     // Redirect logic ONLY when user is in player-answers
     if (this.gameEngine.currentSection === 'player-answers') {
@@ -834,7 +830,7 @@ export class GameRoomManager {
   // Navigate to previous player's question
   goToPreviousCluePlayer() {
     if (this.currentCluePlayerIndex > 0) {
-      this.currentCluePlayerIndex--;
+      this.currentCluePlayerIndex -= 1;
       if (this.gameEngine.players) {
         this.updateClueAnswers(this.gameEngine.players);
       }
@@ -917,7 +913,6 @@ export class GameRoomManager {
       (p) => p.id === currentPlayerId,
     );
     const currentPlayerRank = currentPlayerIndex >= 0 ? currentPlayerIndex + 1 : null;
-    const currentPlayer = currentPlayerIndex >= 0 ? leaderboardData[currentPlayerIndex] : null;
 
     // Calculate percentage of players doing worse than current player
     let betterThanPercentage = 0;
@@ -1151,7 +1146,7 @@ export class GameRoomManager {
       const currentPlayerId = socket?.id;
 
       // Render ranking items
-      rankingData.forEach((player, index) => {
+      rankingData.forEach((player) => {
         const resultItem = document.createElement('div');
         resultItem.className = 'result-item';
 
